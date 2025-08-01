@@ -1,4 +1,4 @@
-<div class="flex flex-col font-[Poppins] text-white">
+<div class="flex flex-col h-screen font-[Poppins] text-white">
   @if (data?.data?.header) {
     <div id="header"
       class="flex flex-row justify-between py-[23px] px-[74px] bg-black border-b-1 border-[var(--color-header-border)]">
@@ -15,7 +15,7 @@
 
   @if (data?.data?.banner) {
     <div id="banner" class="relative w-screen">
-      <img id="banner.image" [src]="'http://localhost:1337' + data.data.banner.image.url">
+      <img id="banner.image" class=" w-full" [src]="'http://localhost:1337' + data.data.banner.image.url">
 
       <div class="absolute w-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[229px] z-10">
         <div class="flex flex-col items-center">
@@ -39,32 +39,34 @@
 
   @if (data?.data?.footer) {
     <div id="footer"
-      class="flex flex-row justify-between py-[23px] px-[74px] bg-black border-b-1 border-[var(--color-header-border)] font-[Inter]">
-      <img id="header.logo" class="w-[144px]" [src]="'http://localhost:1337' + data.data.footer.logo.url"/>
+      class="h-full flex flex-row items-start bg-black font-[Inter]">
+      <div class="flex w-full justify-between pt-[23px] px-[74px] items-center">
+        <img id="footer.logo" class="w-[144px]" [src]="'http://localhost:1337' + data.data.footer.logo.url"/>
 
-      @if (data.data.footer.contactInfo.contacts.length) {
-        <div class="flex flex-col gap-[27px] shrink-0 w-fit">
-          @if (data.data.footer.contactInfo.title) {
-            <div id="footer.contactInfo.title" class="text-[20px] font-semibold">
-              {{ data.data.footer.contactInfo.title }}
-            </div>
-          }
-
-          @for (contact of data.data.footer.contactInfo.contacts; track contact.id) {
-            <a [href]="contact.href" target="blank">
-              <div class="flex flex-row gap-x-[9px]">
-                @if (contact.icon) {
-                    <img id="footer.contactInfo.contact.icon" [src]="'http://localhost:1337' + contact.icon.url">
-                }
-
-                <div id="footer.contactInfo.contact.text" class="text-[15px] whitespace-nowrap">
-                  {{ contact.text }}
-                </div>
+        @if (data.data.footer.contactInfo.contacts.length) {
+          <div class="flex flex-col items-baseline gap-[27px] shrink-0 w-fit">
+            @if (data.data.footer.contactInfo.title) {
+              <div id="footer.contactInfo.title" class="text-[20px] font-semibold">
+                {{ data.data.footer.contactInfo.title }}
               </div>
-            </a>
-          }
-        </div>
-      }
+            }
+
+            @for (contact of data.data.footer.contactInfo.contacts; track contact.id) {
+              <a [href]="contact.href" target="blank">
+                <div class="flex flex-row gap-x-[9px]">
+                  @if (contact.icon) {
+                      <img id="footer.contactInfo.contact.icon" [src]="'http://localhost:1337' + contact.icon.url">
+                  }
+
+                  <div id="footer.contactInfo.contact.text" class="text-[15px] whitespace-nowrap">
+                    {{ contact.text }}
+                  </div>
+                </div>
+              </a>
+            }
+          </div>
+        }
+      </div>
     </div>
   }
 </div>
