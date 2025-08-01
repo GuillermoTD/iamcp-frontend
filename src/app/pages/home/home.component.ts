@@ -1,11 +1,31 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { HomeService } from '../../services/pages/home/home.service';
 
 @Component({
   selector: 'app-home',
   imports: [],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  private service = inject(HomeService);
+  private cdr = inject(ChangeDetectorRef);
+  data?: any;
 
+  ngOnInit(): void {
+    this.service.fetch().subscribe({
+      next: (res) => {
+        this.data = res;
+        this.cdr.detectChanges();
+      },
+      error(err) {
+        console.log('Fetch failed: ', err);
+      },
+    });
+  }
+
+  get bannerImage(): string {
+    const url = this.data?.data?.banner?.image?.url;
+    return url ? `url(http://localhost:1337${url})` : '';
+  }
 }

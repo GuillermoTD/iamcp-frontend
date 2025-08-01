@@ -1,2 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+@theme {
+  --color-button: oklch(0.6539 0.1707 130.93);
+  --color-header-border: oklch(0.4407 0.0079 17.46);
+}

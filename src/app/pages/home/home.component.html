@@ -1,1 +1,16 @@
-<p>home works!</p>
+<div class="flex flex-col">
+  @if (data?.data?.header) {
+  <div id="header"
+    class="flex flex-row justify-between py-[23px] px-[74px] bg-black text-white border-b-1 border-[var(--color-header-border)]">
+    <img id="header.logo" class="w-[144px]" [src]="'http://localhost:1337' + data.data.header.logo.url"
+      [alt]="data?.data?.header?.logo?.name" />
+
+    @if (data.data.header.button.label) {
+    <button id="header.button"
+      class="w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[18px] font-[Poppins] font-medium">
+      {{ data.data.header.button.label }}
+    </button>
+    }
+  </div>
+  }
+</div>
