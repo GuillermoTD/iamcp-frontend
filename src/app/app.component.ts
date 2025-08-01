@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { HomeComponent } from './pages/home/home.component';
 // import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [HomeComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
-export class AppComponent {
-  title = 'iamcp-frontend';
-}
+export class AppComponent {}
