@@ -1,90 +1,122 @@
-<div class="flex flex-col h-screen font-[Poppins] text-white">
+<div class="flex flex-col h-screen font-[Poppins] text-white Home">
   @if (data?.data?.header) {
-    <div id="header"
-      class="flex flex-row justify-between py-[23px] px-[74px] bg-black border-b-1 border-[var(--color-header-border)]">
-      <img id="header.logo" class="w-[144px]" [src]="'http://localhost:1337' + data.data.header.logo.url"/>
+  <div class="Home_Header">
+    <img
+      id="header.logo"
+      class="w-[144px]"
+      [src]="'http://localhost:1337' + data.data.header.logo.url"
+    />
 
-      @if (data.data.header.button.label) {
-        <button id="header.button"
-          class="w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[18px] font-medium">
-          {{ data.data.header.button.label }}
-        </button>
-      }
-    </div>
-  }
+    @if (data.data.header.button.label) {
+    <button id="header.button" class="Home_Header__Button">
+      {{ data.data.header.button.label }}
+    </button>
+    }
+  </div>
 
-  @if (data?.data?.banner) {
-    <div id="banner" class="relative w-screen">
-      <img id="banner.image" class=" w-full" [src]="'http://localhost:1337' + data.data.banner.image.url">
+  } 
+  
+  <!-- @if (data?.data?.banner) {
+  <div id="banner" class="Home_Banner">
+    <img
+      id="banner.image"
+      class="w-full"
+      [src]="'http://localhost:1337' + data.data.banner.image.url"
+    />
 
-      <div class="absolute w-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[229px] z-10">
-        <div class="flex flex-col items-center">
-          @if (data?.data?.banner.logo) {
-            <img id="banner.logo" class="w-[229px]" [src]="'http://localhost:1337' + data.data.banner.logo.url">
-          }
+    <div
+      class="absolute w-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[229px] z-10"
+    >
+      <div class="flex flex-col items-center">
+        @if (data?.data?.banner.logo) {
+        <img
+          id="banner.logo"
+          class="w-[229px]"
+          [src]="'http://localhost:1337' + data.data.banner.logo.url"
+        />
+        }
 
-          <div id="banner.header" class="text-[70px] font-bold">
-            {{ data.data.banner.header }}
-          </div>
-
-          @if (data.data.banner.subheader) {
-            <div id="banner.subheader" class="text-[35px]">
-              {{ data.data.banner.subheader }}
-            </div>
-          }
+        <div id="banner.header" class="text-[70px] font-bold">
+          {{ data.data.banner.header }}
         </div>
+
+        @if (data.data.banner.subheader) {
+        <div id="banner.subheader" class="text-[35px]">
+          {{ data.data.banner.subheader }}
+        </div>
+        }
       </div>
     </div>
-  }
+  </div>
+  }  -->
 
+  <app-slider [slides]="data?.data?.slider.slides"></app-slider>
+  
+  
   @if (data?.data?.tabs?.length) {
-    <div id="tabs" class="flex flex-row p-[30px] gap-[60px] bg-[var(--color-tab-bar)]">
-      @for (tab of data.data.tabs; track tab.id) {
-        @if (tab.isActive) {
-          <div class="text-[var(--color-tab-selected)]">
-          {{ tab.title }}
-          </div>
-        } @else {
-          <div>
-          {{ tab.title }}
-          </div>
-        }
-
-      }
+  <div class="Home_Tabs">
+    <div class="Home_Tabs__Labels">
+      @for (tab of data.data.tabs; track tab.id) { @if (tab.isActive) {
+      <div
+        class="Home_Tabs__LabelItem"
+        [ngClass]="{ 'active-tab': tab.id === activeTabId }"
+        (click)="setActiveTab(tab?.id)">
+        {{ tab.title }}
+      </div>
+      } @else {
+      <div>
+        {{ tab.title }}
+      </div>
+      } }
     </div>
-  }
 
-  @if (data?.data?.footer) {
-    <div id="footer"
-      class="h-full flex flex-row justify-between items-start py-[30px] px-[74px] bg-black font-[Inter]">
-        <img id="footer.logo" class="w-[144px]" [src]="'http://localhost:1337' + data.data.footer.logo.url"/>
+    <div class="Home_Tabs__Content">content</div>
+  </div>
+  } @if (data?.data?.footer) {
+  <div
+    id="footer"
+    class="h-full flex flex-row justify-between items-start py-[30px] px-[74px] bg-black font-[Inter]"
+  >
+    <img
+      id="footer.logo"
+      class="w-[144px]"
+      [src]="'http://localhost:1337' + data.data.footer.logo.url"
+    />
 
-        @if (data.data.footer.contactInfo.contacts.length) {
-          <div class="flex flex-col gap-[10px]">
-            @if (data.data.footer.contactInfo.title) {
-              <div id="footer.contactInfo.title" class="text-[20px] text-right font-semibold">
-              {{ data.data.footer.contactInfo.title }}
-              </div>
+    @if (data.data.footer.contactInfo.contacts.length) {
+    <div class="flex flex-col gap-[10px]">
+      @if (data.data.footer.contactInfo.title) {
+      <div
+        id="footer.contactInfo.title"
+        class="text-[20px] text-right font-semibold"
+      >
+        {{ data.data.footer.contactInfo.title }}
+      </div>
+      }
+      <div class="flex flex-row gap-[30px]">
+        @for (contact of data.data.footer.contactInfo.contacts; track
+        contact.id) {
+        <a [href]="contact.href" target="blank">
+          <div class="flex flex-row gap-x-[9px]">
+            @if (contact.icon) {
+            <img
+              id="footer.contactInfo.contact.icon"
+              [src]="'http://localhost:1337' + contact.icon.url"
+            />
             }
-            <div class="flex flex-row gap-[30px]">
-              @for (contact of data.data.footer.contactInfo.contacts; track contact.id) {
-                <a [href]="contact.href" target="blank">
-                  <div class="flex flex-row gap-x-[9px]">
-                    @if (contact.icon) {
-                        <img id="footer.contactInfo.contact.icon" [src]="'http://localhost:1337' + contact.icon.url">
-                    }
 
-                    <div id="footer.contactInfo.contact.text" class="text-[15px] whitespace-nowrap">
-                      {{ contact.text }}
-                    </div>
-                  </div>
-                </a>
-              }
+            <div
+              id="footer.contactInfo.contact.text"
+              class="text-[15px] whitespace-nowrap"
+            >
+              {{ contact.text }}
             </div>
           </div>
+        </a>
         }
+      </div>
     </div>
+    }
+  </div>
   }
-
-
 </div>

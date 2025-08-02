@@ -1,9 +1,11 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { HomeService } from '../../services/pages/home/home.service';
+import { CommonModule } from '@angular/common';
+import { SliderComponent } from '../../components/slider/slider.component';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [CommonModule, SliderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -11,6 +13,7 @@ export class HomeComponent implements OnInit {
   private service = inject(HomeService);
   private cdr = inject(ChangeDetectorRef);
   data?: any;
+  activeTabId: string | null = null;
 
   ngOnInit(): void {
     this.service.fetch().subscribe({
@@ -27,5 +30,9 @@ export class HomeComponent implements OnInit {
   get bannerImage(): string {
     const url = this.data?.data?.banner?.image?.url;
     return url ? `url(http://localhost:1337${url})` : '';
+  }
+
+  setActiveTab(tabId: string) {
+    this.activeTabId = tabId;
   }
 }
