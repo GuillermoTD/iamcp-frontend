@@ -37,36 +37,54 @@
     </div>
   }
 
+  @if (data?.data?.tabs?.length) {
+    <div id="tabs" class="flex flex-row p-[30px] gap-[60px] bg-[var(--color-tab-bar)]">
+      @for (tab of data.data.tabs; track tab.id) {
+        @if (tab.isActive) {
+          <div class="text-[var(--color-tab-selected)]">
+          {{ tab.title }}
+          </div>
+        } @else {
+          <div>
+          {{ tab.title }}
+          </div>
+        }
+
+      }
+    </div>
+  }
+
   @if (data?.data?.footer) {
     <div id="footer"
-      class="h-full flex flex-row items-start bg-black font-[Inter]">
-      <div class="flex w-full justify-between pt-[23px] px-[74px] items-center">
+      class="h-full flex flex-row justify-between items-start py-[30px] px-[74px] bg-black font-[Inter]">
         <img id="footer.logo" class="w-[144px]" [src]="'http://localhost:1337' + data.data.footer.logo.url"/>
 
         @if (data.data.footer.contactInfo.contacts.length) {
-          <div class="flex flex-col items-baseline gap-[27px] shrink-0 w-fit">
+          <div class="flex flex-col gap-[10px]">
             @if (data.data.footer.contactInfo.title) {
-              <div id="footer.contactInfo.title" class="text-[20px] font-semibold">
-                {{ data.data.footer.contactInfo.title }}
+              <div id="footer.contactInfo.title" class="text-[20px] text-right font-semibold">
+              {{ data.data.footer.contactInfo.title }}
               </div>
             }
+            <div class="flex flex-row gap-[30px]">
+              @for (contact of data.data.footer.contactInfo.contacts; track contact.id) {
+                <a [href]="contact.href" target="blank">
+                  <div class="flex flex-row gap-x-[9px]">
+                    @if (contact.icon) {
+                        <img id="footer.contactInfo.contact.icon" [src]="'http://localhost:1337' + contact.icon.url">
+                    }
 
-            @for (contact of data.data.footer.contactInfo.contacts; track contact.id) {
-              <a [href]="contact.href" target="blank">
-                <div class="flex flex-row gap-x-[9px]">
-                  @if (contact.icon) {
-                      <img id="footer.contactInfo.contact.icon" [src]="'http://localhost:1337' + contact.icon.url">
-                  }
-
-                  <div id="footer.contactInfo.contact.text" class="text-[15px] whitespace-nowrap">
-                    {{ contact.text }}
+                    <div id="footer.contactInfo.contact.text" class="text-[15px] whitespace-nowrap">
+                      {{ contact.text }}
+                    </div>
                   </div>
-                </div>
-              </a>
-            }
+                </a>
+              }
+            </div>
           </div>
         }
-      </div>
     </div>
   }
+
+
 </div>
