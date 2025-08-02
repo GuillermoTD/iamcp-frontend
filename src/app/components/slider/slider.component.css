@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+
+
+
+.SliderContainer{
+    @apply w-screen min-h-[20rem] h-[30rem];
+}

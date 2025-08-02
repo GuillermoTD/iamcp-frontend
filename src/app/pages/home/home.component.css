@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+.Home {
+  .Home_Header {
+    @apply flex flex-row justify-between py-[23px] px-[74px]
+        bg-black border-b-1 border-[var(--color-header-border)];
+  }
+
+  .Home_Header__Button {
+    @apply w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[18px] font-medium;
+  }
+
+  .Home_Banner {
+    @apply relative w-screen;
+  }
+
+  .Home_Tabs {
+    @apply flex flex-col;
+
+    .Home_Tabs__Labels {
+      @apply flex p-[10px] gap-[60px] bg-[var(--color-tab-bar)];
+
+      .Home_Tabs__LabelItem {
+        @apply text-[var(--color-tab-selected)] flex items-center justify-center px-[20px] 
+                py-[10px] transition duration-300 cursor-pointer;
+      }
+    }
+
+    .Home_Tabs__Content {
+      @apply w-screen min-h-[30rem] bg-black p-[30px];
+    }
+  }
+}
+
+
+.active-tab {
+  @apply text-[var(--color-tab-active)] pb-[0.8rem] border-b-[0.3rem] border-[var(--color-tab-active)];
+}
