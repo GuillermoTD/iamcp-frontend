@@ -1,26 +1,26 @@
 <div class="flex flex-col h-screen font-[Poppins] text-white Home">
   @if (data?.data?.header) {
-  <div class="Home_Header">
-    <img
-      id="header.logo"
-      class="w-[144px]"
-      [src]="'http://localhost:1337' + data.data.header.logo.url"
-    />
+    <div class="Home_Header">
+      <img
+        id="header.logo"
+        class="w-[144px]"
+        [src]="serverUrl + data.data.header.logo.url"
+      />
 
-    @if (data.data.header.button.label) {
-    <button id="header.button" class="Home_Header__Button">
-      {{ data.data.header.button.label }}
-    </button>
-    }
-  </div>
-  } 
-  
+      @if (data.data.header.button.label) {
+      <button id="header.button" class="Home_Header_Button">
+        {{ data.data.header.button.label }}
+      </button>
+      }
+    </div>
+  }
+
   <!-- @if (data?.data?.banner) {
   <div id="banner" class="Home_Banner">
     <img
       id="banner.image"
       class="w-full"
-      [src]="'http://localhost:1337' + data.data.banner.image.url"
+      [src]="serverUrl + data.data.banner.image.url"
     />
 
     <div
@@ -31,7 +31,7 @@
         <img
           id="banner.logo"
           class="w-[229px]"
-          [src]="'http://localhost:1337' + data.data.banner.logo.url"
+          [src]="serverUrl + data.data.banner.logo.url"
         />
         }
 
@@ -49,29 +49,60 @@
   </div>
   }  -->
 
-  <app-slider [slides]="data?.data?.slider.slides"></app-slider>
-  
-  
+  <app-slider [slides]="data?.data?.slider.slides"/>
+
+
   @if (data?.data?.tabs?.length) {
-  <div class="Home_Tabs">
-    <div class="Home_Tabs__Labels">
-      @for (tab of data.data.tabs; track tab.id) { @if (tab.isActive) {
-      <div
-        class="Home_Tabs__LabelItem"
-        [ngClass]="{ 'active-tab': tab.id === activeTabId }"
-        (click)="setActiveTab(tab?.id)">
-        {{ tab.title }}
-      </div>
-      } @else {
-      <div>
-        {{ tab.title }}
-      </div>
-      } }
+    <div class="Home_Tabs">
+      <div class="Home_Tabs_Labels">
+        @for (tab of data.data.tabs; track tab.id) {
+          <div class="Home_Tabs_LabelItem" (click)="setActiveTab(tab?.id)">
+            @if (this.activeTabId == tab.id) {
+              <div class="active-tab">
+                {{ tab.title }}
+                <div class="active-tab_border"></div>
+              </div>
+            }
+            @else {
+              {{ tab.title }}
+            }
+          </div>
+          }
     </div>
 
-    <div class="Home_Tabs__Content">content</div>
+    <div class="Home_Tabs_Content">
+      @for (tab of data.data.tabs; track tab.id) {
+        @if (this.activeTabId == tab.id) {
+          @if (tab.blocks?.length) {
+            <div class="Home_Tabs_Content_Blocks">
+            @for (block of tab.blocks; track block.id) {
+
+              @switch (block.__component) {
+                @case ("blocks.card") {
+                  <div class="Home_Tabs_Content_Blocks_Card" [ngClass]="block.isReverse ? 'flex-row-reverse' : 'flex-row'">
+                    <div class="Home_Tabs_Content_Blocks_Card_Text">
+                      <div class="Home_Tabs_Content_Blocks_Card_Title">
+                        {{ block.title }}
+                      </div>
+                      <div class="Home_Tabs_Content_Blocks_Card_Description">
+                        {{ block.description }}
+                      </div>
+                    </div>
+
+                    <img class="Home_Tabs_Content_Blocks_Card_Image" [src]="serverUrl + block.image.url">
+                  </div>
+                }
+              }
+            }
+            </div>
+          }
+        }
+      }
+    </div>
   </div>
-  } @if (data?.data?.footer) {
+  }
+
+  @if (data?.data?.footer) {
   <div
     id="footer"
     class="h-full flex flex-row justify-between items-start py-[30px] px-[74px] bg-black font-[Inter]"
@@ -79,7 +110,7 @@
     <img
       id="footer.logo"
       class="w-[144px]"
-      [src]="'http://localhost:1337' + data.data.footer.logo.url"
+      [src]="serverUrl + data.data.footer.logo.url"
     />
 
     @if (data.data.footer.contactInfo.contacts.length) {
@@ -100,7 +131,7 @@
             @if (contact.icon) {
             <img
               id="footer.contactInfo.contact.icon"
-              [src]="'http://localhost:1337' + contact.icon.url"
+              [src]="serverUrl + contact.icon.url"
             />
             }
 
