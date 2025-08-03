@@ -1,17 +1,17 @@
-<div class="SliderContainer">
+<div class="SliderContainer ">
   <div class="swiper h-full w-full">
     <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper bg-black" >
       <!-- Slides -->
-      <div class="swiper-slide" *ngFor="let slide of slides">
-        <img [src]="slide.formats?.large?.url" class="object-cover w-full h-full"  alt="slide" />
+      <div class="swiper-slide" *ngFor="let slide of slides" data-swiper-autoplay="2000">
+        <img [src]="domain + slide?.url" class="object-cover w-full h-full"  alt="slide" />
       </div>
     </div>
   </div>
   <!-- If we need pagination -->
   <div class="swiper-pagination"></div>
 
-  <!-- If we need navigation buttons -->
+  <!-- If we need navigation buttons
   <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
+  <div class="swiper-button-next"></div> -->
 </div>

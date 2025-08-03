@@ -18,12 +18,13 @@ import { CommonModule } from '@angular/common';
 export class SliderComponent {
   swiper: Swiper | undefined;
   @Input() slides: any[] = [];
+  domain: string = 'http://localhost:1337';
 
   ngOnInit(): void {
     // init Swiper:
     this.swiper = new Swiper('.swiper', {
-      modules: [Navigation, Pagination],
-      navigation: true,
+      modules: [ Pagination],
+      navigation: false,
       pagination: { clickable: true },
       autoplay: {
         delay: 2000,
