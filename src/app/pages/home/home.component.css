@@ -4,11 +4,10 @@
   
 
   .Home_Header {
-    @apply flex flex-row justify-between py-[23px] px-[74px]
-        bg-black border-b-1 border-[var(--color-header-border)];
+    @apply flex flex-row justify-between py-[23px] px-[74px] bg-black border-b-1 border-[var(--color-header-border)];
   }
 
-  .Home_Header__Button {
+  .Home_Header_Button {
     @apply w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[18px] font-medium;
   }
 
@@ -19,22 +18,49 @@
   .Home_Tabs {
     @apply flex flex-col;
 
-    .Home_Tabs__Labels {
+    .Home_Tabs_Labels {
       @apply flex p-[10px] gap-[60px] bg-[var(--color-tab-bar)];
 
-      .Home_Tabs__LabelItem {
-        @apply text-[var(--color-tab-selected)] flex items-center justify-center px-[20px] 
-                py-[10px] transition duration-300 cursor-pointer;
+      .Home_Tabs_LabelItem {
+        @apply flex items-center justify-center px-[20px] py-[10px] transition duration-300 cursor-pointer;
       }
     }
 
-    .Home_Tabs__Content {
-      @apply w-screen min-h-[30rem] bg-black p-[30px];
+    .Home_Tabs_Content {
+      /* border */
+      @apply flex flex-col items-center w-screen min-h-[30rem] bg-black p-[30px];
+
+      .Home_Tabs_Content_Blocks {
+        @apply flex flex-col gap-[120px] w-3/4 py-[60px];
+
+        .Home_Tabs_Content_Blocks_Card {
+          @apply flex gap-[60px] items-center justify-center;
+
+          .Home_Tabs_Content_Blocks_Card_Text {
+            @apply flex flex-col w-1/2 gap-[20px];
+
+            .Home_Tabs_Content_Blocks_Card_Title {
+              @apply text-[35px];
+            }
+
+            .Home_Tabs_Content_Blocks_Card_Description {
+              @apply text-[20px];
+            }
+          }
+
+          .Home_Tabs_Content_Blocks_Card_Image {
+            @apply w-1/2;
+          }
+        }
+      }
     }
   }
 }
 
-
 .active-tab {
-  @apply text-[var(--color-tab-active)] pb-[0.8rem] border-b-[0.3rem] border-[var(--color-tab-active)];
+  @apply relative text-[var(--color-tab-selected)];
+
+  .active-tab_border {
+    @apply absolute bottom-[-20px] left-0 w-full h-[0.3rem] bg-[var(--color-tab-selected)];
+  }
 }

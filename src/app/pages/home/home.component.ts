@@ -13,7 +13,9 @@ export class HomeComponent implements OnInit {
   private service = inject(HomeService);
   private cdr = inject(ChangeDetectorRef);
   data?: any;
-  activeTabId: string | null = null;
+  activeTabId?: string | null = null;
+
+  serverUrl = 'http://localhost:1337';
 
   ngOnInit(): void {
     this.service.fetch().subscribe({
