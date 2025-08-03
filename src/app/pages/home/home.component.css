@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 .Home {
+  
+
   .Home_Header {
     @apply flex flex-row justify-between py-[23px] px-[74px]
         bg-black border-b-1 border-[var(--color-header-border)];
