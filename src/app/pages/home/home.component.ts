@@ -2,10 +2,11 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { HomeService } from '../../services/pages/home/home.service';
 import { CommonModule } from '@angular/common';
 import { SliderComponent } from '../../components/slider/slider.component';
+import { MarkdownPipe } from '../../markdown.pipe';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, SliderComponent],
+  imports: [CommonModule, SliderComponent, MarkdownPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

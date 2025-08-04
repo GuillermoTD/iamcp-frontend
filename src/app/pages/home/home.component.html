@@ -1,6 +1,6 @@
-<div class="flex flex-col h-screen font-[Poppins] text-white Home">
+<div class="home">
   @if (data?.data?.header) {
-    <div class="Home_Header">
+    <div class="home-header">
       <img
         id="header.logo"
         class="w-[144px]"
@@ -8,7 +8,7 @@
       />
 
       @if (data.data.header.button.label) {
-      <button id="header.button" class="Home_Header_Button">
+      <button id="header.button" class="home-header-button">
         {{ data.data.header.button.label }}
       </button>
       }
@@ -16,7 +16,7 @@
   }
 
   <!-- @if (data?.data?.banner) {
-  <div id="banner" class="Home_Banner">
+  <div id="banner" class="home-banner">
     <img
       id="banner.image"
       class="w-full"
@@ -53,14 +53,14 @@
 
 
   @if (data?.data?.tabs?.length) {
-    <div class="Home_Tabs">
-      <div class="Home_Tabs_Labels">
+    <div class="home-tabs">
+      <div class="home-tabs-labels">
         @for (tab of data.data.tabs; track tab.id) {
-          <div class="Home_Tabs_LabelItem" (click)="setActiveTab(tab?.id)">
+          <div class="home-tabs-label-item" (click)="setActiveTab(tab?.id)">
             @if (this.activeTabId == tab.id) {
               <div class="active-tab">
                 {{ tab.title }}
-                <div class="active-tab_border"></div>
+                <div class="active-tab-border"></div>
               </div>
             }
             @else {
@@ -70,26 +70,106 @@
           }
     </div>
 
-    <div class="Home_Tabs_Content">
+    <div class="home-tabs-content">
       @for (tab of data.data.tabs; track tab.id) {
         @if (this.activeTabId == tab.id) {
           @if (tab.blocks?.length) {
-            <div class="Home_Tabs_Content_Blocks">
-            @for (block of tab.blocks; track block.id) {
-
+            <div class="home-tabs-content-blocks">
+            @for (block of tab.blocks; track $index) {
               @switch (block.__component) {
                 @case ("blocks.card") {
-                  <div class="Home_Tabs_Content_Blocks_Card" [ngClass]="block.isReverse ? 'flex-row-reverse' : 'flex-row'">
-                    <div class="Home_Tabs_Content_Blocks_Card_Text">
-                      <div class="Home_Tabs_Content_Blocks_Card_Title">
+                  <div class="home-tabs-content-blocks-card" [ngClass]="block.isReverse ? 'flex-row-reverse' : 'flex-row'">
+                    <div class="home-tabs-content-blocks-card-text">
+                      <div class="home-tabs-content-blocks-card-title">
                         {{ block.title }}
                       </div>
-                      <div class="Home_Tabs_Content_Blocks_Card_Description">
-                        {{ block.description }}
-                      </div>
+
+                      <div class="home-tabs-content-blocks-card-description" [innerHTML]="block.description | markdown"></div>
                     </div>
 
-                    <img class="Home_Tabs_Content_Blocks_Card_Image" [src]="serverUrl + block.image.url">
+                    <img class="home-tabs-content-blocks-card-image" [src]="serverUrl + block.image.url">
+                  </div>
+                }
+                @case ("blocks.image") {
+                  <div class="home-tabs-content-blocks-media">
+                    <img [src]="serverUrl + block.image.url">
+
+                    @if (block.hasDescription) {
+                      <div class="home-tabs-content-blocks-media-description" [ngClass]="block.isDescriptionCentered ? 'text-center' : null">
+                        {{ block.description }}
+                      </div>
+                    }
+                  </div>
+                }
+                @case ("blocks.two-image-columns") {
+                  <div class="home-tabs-content-blocks-two-image-columns">
+                    @for (image of block.imageColumns; track image.id) {
+                      <div class="home-tabs-content-blocks-media">
+                        <div>
+                          <img [src]="serverUrl + image.image.url">
+
+                          @if (image.hasDescription) {
+                            <div class="home-tabs-content-blocks-media-description" [ngClass]="image.isDescriptionCentered ? 'text-center' : ''">
+                              {{ image.description }}
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+                @case ("blocks.video") {
+                  <div class="home-tabs-content-blocks-media">
+                    <video [autoplay]="block.autoplay ? 'autoplay' : null" [muted]="block.isMuted ? 'muted' : null" [controls]="block.hasControls ? 'controls' : null">
+                      <source [src]="serverUrl + block.video.url">
+                    </video>
+
+                    @if (block.hasDescription) {
+                      <div class="home-tabs-content-blocks-media-description" [ngClass]="block.isDescriptionCentered ? 'text-center' : null">
+                        {{ block.description }}
+                      </div>
+                    }
+                  </div>
+                }
+                @case ("blocks.text") {
+                  <div class="home-tabs-content-blocks-text" [ngClass]="block.isTextCentered ? 'text-center' : null">
+                    <div class="home-tabs-content-blocks-text-title">
+                      {{ block.title }}
+                    </div>
+
+                    <div class="home-tabs-content-blocks-text-description" [innerHTML]="block?.description | markdown"></div>
+                  </div>
+                }
+                @case ("blocks.two-text-columns") {
+                  <div class="home-tabs-content-blocks-two-text-columns">
+                  @for (textBlock of block.textColumns; track textBlock.id) {
+                    <div class="home-tabs-content-blocks-text" [ngClass]="block.isTextCentered ? 'text-center' : null">
+                      <div class="home-tabs-content-blocks-text-title">
+                        {{ textBlock.title }}
+                      </div>
+                      <div class="home-tabs-content-blocks-text-description"  [innerHTML]="textBlock?.description | markdown"></div>
+                    </div>
+                  }
+                  </div>
+                }
+                @case ("blocks.timeline") {
+                  <div class="home-tabs-content-blocks-timeline">
+                    @for (textBlock of block.textBlocks; track textBlock.id) {
+                      <div class="relative flex gap-x-[30px]">
+
+                        <div class="w-5 h-5 bg-[#E95128] rounded-full mt-[30px]"></div>
+                        @if (!$last) {
+                          <div class="absolute top-[30px] left-[9px] h-[calc(100%+60px)] w-[2px] bg-[#E95128]"></div>
+                        }
+
+                        <div class="home-tabs-content-blocks-text">
+                          <div class="home-tabs-content-blocks-text-title">
+                            {{ textBlock.title }}
+                          </div>
+                          <div class="home-tabs-content-blocks-text-description" [innerHTML]="textBlock?.description | markdown"></div>
+                        </div>
+                      </div>
+                    }
                   </div>
                 }
               }
