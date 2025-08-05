@@ -106,7 +106,7 @@
       @apply flex flex-col gap-[30px];
 
       .home-footer-contact-info-title {
-        @apply text-[20px] text-right font-semibold;
+        @apply text-[20px] text-right max-sm:text-center font-semibold;
       }
 
       .home-footer-contact-info-contacts {

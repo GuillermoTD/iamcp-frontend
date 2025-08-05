@@ -15,7 +15,7 @@
     </div>
   }
 
-  <!-- @if (data?.data?.banner) {
+  @if (data?.data?.banner) {
   <div id="banner" class="home-banner">
     <img
       id="banner.image"
@@ -47,16 +47,14 @@
       </div>
     </div>
   </div>
-  }  -->
+  }
 
-  <app-slider [slides]="data?.data?.slider?.slides"/>
+  <!-- <app-slider [slides]="data?.data?.slider?.slides"/> -->
 
 
   @if (data?.data?.tabs?.length) {
     <div class="home-tabs">
       <div class="home-tabs-labels">
-        {{ setActiveTab(data?.data?.tabs[0].id) }}
-
         @for (tab of data.data.tabs; track tab.id) {
           <div class="home-tabs-label-item" (click)="setActiveTab(tab?.id)">
             @if (this.activeTabId == tab.id) {

@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
       next: (res) => {
         this.data = res;
         this.cdr.detectChanges();
+        this.activeTabId = this?.data?.data?.tabs[0]?.id || null;
       },
       error(err) {
         console.log('Fetch failed: ', err);
