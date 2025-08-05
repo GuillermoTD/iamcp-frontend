@@ -1,112 +1,84 @@
 <div class="flex flex-col h-screen font-[Poppins] text-white Home">
   @if (data?.data?.header) {
-    <div class="Home_Header">
-      <img
-        id="header.logo"
-        class="w-[144px]"
-        [src]="serverUrl + data.data.header.logo.url"
-      />
-
-      @if (data.data.header.button.label) {
-      <button id="header.button" class="Home_Header_Button">
-        {{ data.data.header.button.label }}
-      </button>
-      }
-    </div>
-  }
-
-  <!-- @if (data?.data?.banner) {
-  <div id="banner" class="Home_Banner">
+  <div class="Home_Header">
     <img
-      id="banner.image"
-      class="w-full"
-      [src]="serverUrl + data.data.banner.image.url"
+      id="header.logo"
+      class="w-[144px]"
+      [src]="serverUrl + data.data.header.logo.url"
     />
 
-    <div
-      class="absolute w-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[229px] z-10"
-    >
-      <div class="flex flex-col items-center">
-        @if (data?.data?.banner.logo) {
-        <img
-          id="banner.logo"
-          class="w-[229px]"
-          [src]="serverUrl + data.data.banner.logo.url"
-        />
-        }
+    @if (data.data.header.button.label) {
+    <button id="header.button" class="Home_Header_Button">
+      {{ data.data.header.button.label }}
+    </button>
+    }
+  </div>
+  } @if (data?.data?.banner) {
+  <div class="Home_Banner">
+    <div class="Home_Banner__Wrapper">
+      <img [src]="serverUrl + data.data.banner.image.url" alt="Banner" />
+    </div>
 
-        <div id="banner.header" class="text-[70px] font-bold">
-          {{ data.data.banner.header }}
-        </div>
-
-        @if (data.data.banner.subheader) {
-        <div id="banner.subheader" class="text-[35px]">
-          {{ data.data.banner.subheader }}
-        </div>
-        }
-      </div>
+    <div class="Home_Banner__Box">
+      <img [src]="serverUrl + data.data.banner.logo.url" alt="Logo" />
+      <h2 class="Home_Banner__Content_Title">{{ data.data.banner.header }}</h2>
+      <p class="Home_Banner__Content_Description">
+        {{ data.data.banner.description }}
+      </p>
     </div>
   </div>
-  }  -->
+  }
 
-  <app-slider [slides]="data?.data?.slider.slides"/>
-
+  <!-- <app-slider [slides]="data?.data?.slider.slides"/> -->
 
   @if (data?.data?.tabs?.length) {
-    <div class="Home_Tabs">
-      <div class="Home_Tabs_Labels">
-        @for (tab of data.data.tabs; track tab.id) {
-          <div class="Home_Tabs_LabelItem" (click)="setActiveTab(tab?.id)">
-            @if (this.activeTabId == tab.id) {
-              <div class="active-tab">
-                {{ tab.title }}
-                <div class="active-tab_border"></div>
-              </div>
-            }
-            @else {
-              {{ tab.title }}
-            }
-          </div>
-          }
+  <div class="Home_Tabs">
+    <div class="Home_Tabs_Labels">
+      @for (tab of data.data.tabs; track tab.id) {
+      <div class="Home_Tabs_LabelItem" (click)="setActiveTab(tab?.id)">
+        @if (this.activeTabId == tab.id) {
+        <div class="active-tab">
+          {{ tab.title }}
+          <div class="active-tab_border"></div>
+        </div>
+        } @else {
+        {{ tab.title }}
+        }
+      </div>
+      }
     </div>
 
     <div class="Home_Tabs_Content">
-      @for (tab of data.data.tabs; track tab.id) {
-        @if (this.activeTabId == tab.id) {
-          @if (tab.blocks?.length) {
-            <div class="Home_Tabs_Content_Blocks">
-            @for (block of tab.blocks; track block.id) {
-
-              @switch (block.__component) {
-                @case ("blocks.card") {
-                  <div class="Home_Tabs_Content_Blocks_Card" [ngClass]="block.isReverse ? 'flex-row-reverse' : 'flex-row'">
-                    <div class="Home_Tabs_Content_Blocks_Card_Text">
-                      <div class="Home_Tabs_Content_Blocks_Card_Title">
-                        {{ block.title }}
-                      </div>
-                      <div class="Home_Tabs_Content_Blocks_Card_Description">
-                        {{ block.description }}
-                      </div>
-                    </div>
-
-                    <img class="Home_Tabs_Content_Blocks_Card_Image" [src]="serverUrl + block.image.url">
-                  </div>
-                }
-              }
-            }
+      @for (tab of data.data.tabs; track tab.id) { @if (this.activeTabId ==
+      tab.id) { @if (tab.blocks?.length) {
+      <div class="Home_Tabs_Content_Blocks">
+        @for (block of tab.blocks; track block.id) { @switch (block.__component)
+        { @case ("blocks.card") {
+        <div
+          class="Home_Tabs_Content_Blocks_Card"
+          [ngClass]="block.isReverse ? 'flex-row-reverse' : 'flex-row'"
+        >
+          <div class="Home_Tabs_Content_Blocks_Card_Text">
+            <div class="Home_Tabs_Content_Blocks_Card_Title">
+              {{ block.title }}
             </div>
-          }
-        }
-      }
+            <div class="Home_Tabs_Content_Blocks_Card_Description">
+              {{ block.description }}
+            </div>
+          </div>
+
+          <img
+            class="Home_Tabs_Content_Blocks_Card_Image"
+            [src]="serverUrl + block.image.url"
+          />
+        </div>
+        } } }
+      </div>
+      } } }
     </div>
   </div>
-  }
-
-  @if (data?.data?.footer) {
-  <div
-    id="footer"
-    class="h-full flex flex-row justify-between items-start py-[30px] px-[74px] bg-black font-[Inter]"
-  >
+  } @if (data?.data?.footer) {
+  <div id="footer" class="Home_Footer">
     <img
       id="footer.logo"
       class="w-[144px]"
@@ -114,7 +86,7 @@
     />
 
     @if (data.data.footer.contactInfo.contacts.length) {
-    <div class="flex flex-col gap-[10px]">
+    <div class="Home_Footer__Box flex flex-col gap-[10px]">
       @if (data.data.footer.contactInfo.title) {
       <div
         id="footer.contactInfo.title"

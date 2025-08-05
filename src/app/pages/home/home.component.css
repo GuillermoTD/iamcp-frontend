@@ -1,66 +1,104 @@
 @import "tailwindcss";
 
 .Home {
-  
-
+  /* HEADER */
   .Home_Header {
-    @apply flex flex-row justify-between py-[23px] px-[74px] bg-black border-b-1 border-[var(--color-header-border)];
+    @apply flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 py-[15px] sm:py-[23px] px-[20px] sm:px-[74px] bg-black border-b border-[var(--color-header-border)];
   }
 
   .Home_Header_Button {
-    @apply w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[18px] font-medium;
+    @apply w-full sm:w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[16px] sm:text-[18px] font-medium;
   }
 
-  .Home_Banner {
-    @apply relative w-screen;
+  /* BANNER */
+/* BANNER */
+.Home_Banner {
+  @apply flex flex-col items-center justify-center w-full h-[35rem] sm:h-[40rem] md:h-[45rem];
+
+  .Home_Banner__Wrapper {
+    @apply relative top-0 left-0 w-full h-[20rem];
+
+    img {
+      @apply absolute w-full h-full object-cover;
+    }
   }
 
+  .Home_Banner__Box {
+    @apply absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+           flex flex-col items-center text-center z-10 px-4 text-white;
+
+    img {
+      @apply w-[180px] sm:w-[229px] mb-4;
+    }
+
+    .Home_Banner__Content_Title {
+      @apply text-[38px] w-[180%] text-white  sm:text-[45px] sm:w-[30rem] md:text-[70px] md:w-[50rem]  font-bold leading-tight;
+    }
+
+    .Home_Banner__Content_Description {
+      @apply text-[16px] sm:text-[24px] md:text-[35px] mt-2;
+    }
+  }
+}
+
+
+
+  /* TABS */
   .Home_Tabs {
     @apply flex flex-col;
 
     .Home_Tabs_Labels {
-      @apply flex p-[10px] gap-[60px] bg-[var(--color-tab-bar)];
+      @apply flex flex-col max-md:justify-center items-center sm:flex-row p-[10px] gap-4 sm:gap-[60px] bg-[var(--color-tab-bar)];
 
       .Home_Tabs_LabelItem {
-        @apply flex items-center justify-center px-[20px] py-[10px] transition duration-300 cursor-pointer;
+        @apply flex items-center justify-center px-[12px] sm:px-[20px] py-[8px] sm:py-[10px] text-sm sm:text-base transition duration-300 cursor-pointer;
       }
     }
 
     .Home_Tabs_Content {
-      /* border */
-      @apply flex flex-col items-center w-screen min-h-[30rem] bg-black p-[30px];
+      @apply flex flex-col items-center w-full min-h-[20rem] sm:min-h-[30rem] bg-black p-[20px] sm:p-[30px];
 
       .Home_Tabs_Content_Blocks {
-        @apply flex flex-col gap-[120px] w-3/4 py-[60px];
+        @apply flex flex-col gap-[40px] sm:gap-[120px] w-full sm:w-3/4 py-[30px] sm:py-[60px];
 
         .Home_Tabs_Content_Blocks_Card {
-          @apply flex gap-[60px] items-center justify-center;
+          @apply flex flex-col max-h-[30rem] md:flex-row  sm:gap-[20px] items-center justify-around;
 
           .Home_Tabs_Content_Blocks_Card_Text {
-            @apply flex flex-col w-1/2 gap-[20px];
+            @apply flex flex-col w-full  md:w-[50%];
 
             .Home_Tabs_Content_Blocks_Card_Title {
-              @apply text-[35px];
+              @apply text-[15px] sm:text-[28px] md:text-[35px] text-center ;
             }
 
             .Home_Tabs_Content_Blocks_Card_Description {
-              @apply text-[20px];
+              @apply text-[12px] sm:text-[14px]  md:text-[15px] text-center;
             }
           }
 
           .Home_Tabs_Content_Blocks_Card_Image {
-            @apply w-1/2;
+            @apply w-full md:w-[54%] object-cover rounded-lg;
           }
         }
       }
     }
   }
+
+  .Home_Footer {
+    @apply h-full flex flex-col justify-center items-center py-[30px] px-[74px]
+           bg-black md:flex-row md:items-start md:justify-between;
+
+    .Home_Footer__Box {
+      @apply flex flex-col gap-[10px];
+    }
+  }
 }
 
+/* ACTIVE TAB */
 .active-tab {
   @apply relative text-[var(--color-tab-selected)];
 
   .active-tab_border {
-    @apply absolute bottom-[-20px] left-0 w-full h-[0.3rem] bg-[var(--color-tab-selected)];
+    @apply absolute bottom-[-10px] sm:bottom-[-20px]  w-full h-[0.2rem] sm:h-[0.3rem] bg-[var(--color-tab-selected)];
   }
 }
