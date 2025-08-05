@@ -49,7 +49,7 @@
   </div>
   }  -->
 
-  <app-slider [slides]="data?.data?.slider.slides"/>
+  <app-slider [slides]="data?.data?.slider?.slides"/>
 
 
   @if (data?.data?.tabs?.length) {
@@ -185,7 +185,7 @@
   @if (data?.data?.footer) {
   <div
     id="footer"
-    class="h-full flex flex-row justify-between items-start py-[30px] px-[74px] bg-black font-[Inter]"
+    class="h-full flex flex-row justify-between items-start h-full py-[30px] px-[74px] bg-black font-[Inter]"
   >
     <img
       id="footer.logo"
