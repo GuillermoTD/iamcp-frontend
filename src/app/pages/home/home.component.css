@@ -4,11 +4,11 @@
   @apply flex flex-col h-screen font-[Poppins] text-white;
 
   .home-header {
-    @apply flex flex-row justify-between py-[23px] px-[74px] bg-black border-b-1 border-[var(--color-header-border)];
+    @apply flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 py-[15px] sm:py-[23px] px-[20px] sm:px-[74px] bg-black border-b border-[var(--color-header-border)];
   }
 
   .home-header-button {
-    @apply w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[18px] font-medium;
+    @apply w-full sm:w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[16px] sm:text-[18px] font-medium;
   }
 
   .home-banner {
@@ -19,25 +19,24 @@
     @apply flex flex-col;
 
     .home-tabs-labels {
-      @apply flex px-[60px] py-[10px] bg-[var(--color-tab-bar)];
+      @apply flex flex-col max-sm:justify-center items-center sm:flex-row px-[30px] py-[10px] gap-4 sm:gap-[0px] bg-[var(--color-tab-bar)];
 
       .home-tabs-label-item {
-        @apply flex items-center justify-center px-[24px] py-[10px] transition duration-300 cursor-pointer;
+        @apply flex items-center justify-center px-[12px] sm:px-[20px] py-[8px] sm:py-[10px] text-[18px] sm:text-base text-center transition duration-300 cursor-pointer;
       }
     }
 
     .home-tabs-content {
-      /* border */
-      @apply flex flex-col items-center w-screen min-h-[30rem] bg-black p-[30px];
+      @apply flex flex-col items-center w-screen min-h-[30rem] sm:min-h-[40rem] bg-black px-[60px] py-[30px];
 
       .home-tabs-content-blocks {
-        @apply flex flex-col items-center gap-[124px] px-[120px] max-lg:px-[60px] mt-[60px] mb-[180px];
+        @apply flex flex-col items-center gap-[124px] px-[30px] mt-[60px] mb-[180px];
 
         .home-tabs-content-blocks-card {
           @apply flex max-md:flex-wrap max-xl:flex-col-reverse gap-[60px] items-center justify-center;
 
           .home-tabs-content-blocks-card-text {
-            @apply flex flex-col xl:w-1/2 max-xl:text-center max-xl:items-center gap-[30px];
+            @apply flex flex-col xl:w-1/2 max-xl:text-center max-sm:text-left max-xl:items-center max-sm:items-start gap-[30px];
 
             .home-tabs-content-blocks-card-title {
               @apply text-[35px];
@@ -49,12 +48,12 @@
           }
 
           .home-tabs-content-blocks-card-image {
-            @apply min-xl:w-1/2 max-xl:max-h-[500px];
+            @apply min-xl:w-1/2 max-xl:max-h-[400px];
           }
         }
 
         .home-tabs-content-blocks-media {
-          @apply flex flex-col w-2/3 gap-[24px];
+          @apply flex flex-col min-md:w-1/2 max-md:max-h-[400px] gap-[24px];
 
           .home-tabs-content-blocks-media-description {
             @apply text-[16px];
@@ -62,7 +61,7 @@
         }
 
         .home-tabs-content-blocks-two-image-columns {
-          @apply flex flex-row gap-[60px];
+          @apply flex max-md:flex-col-reverse gap-[60px] items-center justify-center;
         }
 
         .home-tabs-content-blocks-text {
@@ -94,6 +93,34 @@
             .home-tabs-content-blocks-timeline-line {
               @apply absolute top-[17px] left-[9px] h-[calc(100%+60px)] w-[2px] bg-[#E95128];
             }
+          }
+        }
+      }
+    }
+  }
+
+  .home-footer {
+    @apply h-full flex flex-row gap-[30px] max-sm:flex-col max-sm:items-center justify-between items-start py-[30px] px-[74px] bg-black font-[Inter];
+
+    .home-footer-contact-info {
+      @apply flex flex-col gap-[30px];
+
+      .home-footer-contact-info-title {
+        @apply text-[20px] text-right font-semibold;
+      }
+
+      .home-footer-contact-info-contacts {
+        @apply flex max-lg:flex-col gap-[30px];
+
+        .home-footer-contact-info-contacts-contact {
+          @apply flex gap-x-[9px] items-center;
+
+          .home-footer-contact-info-contacts-contact-icon {
+            @apply object-cover;
+          }
+
+          .home-footer-contact-info-contacts-contact-text {
+            @apply text-[15px] whitespace-nowrap;
           }
         }
       }

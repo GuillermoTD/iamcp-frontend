@@ -55,6 +55,8 @@
   @if (data?.data?.tabs?.length) {
     <div class="home-tabs">
       <div class="home-tabs-labels">
+        {{ setActiveTab(data?.data?.tabs[0].id) }}
+
         @for (tab of data.data.tabs; track tab.id) {
           <div class="home-tabs-label-item" (click)="setActiveTab(tab?.id)">
             @if (this.activeTabId == tab.id) {
@@ -183,50 +185,35 @@
   }
 
   @if (data?.data?.footer) {
-  <div
-    id="footer"
-    class="h-full flex flex-row justify-between items-start h-full py-[30px] px-[74px] bg-black font-[Inter]"
-  >
-    <img
-      id="footer.logo"
-      class="w-[144px]"
-      [src]="serverUrl + data.data.footer.logo.url"
-    />
+    <div class="home-footer">
+      <img class="w-[144px]" [src]="serverUrl + data.data.footer.logo.url"/>
 
-    @if (data.data.footer.contactInfo.contacts.length) {
-    <div class="flex flex-col gap-[10px]">
-      @if (data.data.footer.contactInfo.title) {
-      <div
-        id="footer.contactInfo.title"
-        class="text-[20px] text-right font-semibold"
-      >
-        {{ data.data.footer.contactInfo.title }}
-      </div>
-      }
-      <div class="flex flex-row gap-[30px]">
-        @for (contact of data.data.footer.contactInfo.contacts; track
-        contact.id) {
-        <a [href]="contact.href" target="blank">
-          <div class="flex flex-row gap-x-[9px]">
-            @if (contact.icon) {
-            <img
-              id="footer.contactInfo.contact.icon"
-              [src]="serverUrl + contact.icon.url"
-            />
-            }
-
-            <div
-              id="footer.contactInfo.contact.text"
-              class="text-[15px] whitespace-nowrap"
-            >
-              {{ contact.text }}
-            </div>
+      @if (data.data.footer.contactInfo.contacts.length) {
+      <div class="home-footer-contact-info">
+        @if (data.data.footer.contactInfo.title) {
+          <div class="home-footer-contact-info-title">
+            {{ data.data.footer.contactInfo.title }}
           </div>
-        </a>
+          }
+
+        <div class="home-footer-contact-info-contacts">
+          @for (contact of data.data.footer.contactInfo.contacts; track
+          contact.id) {
+          <a [href]="contact.href" target="blank">
+            <div class="home-footer-contact-info-contacts-contact">
+              @if (contact.icon) {
+                <img class="home-footer-contact-info-contacts-contact-icon" [src]="serverUrl +  contact.icon.url" />
+              }
+
+              <div class="home-footer-contact-info-contacts-contact-text">
+                {{ contact.text }}
+              </div>
+            </div>
+          </a>
+          }
+        </div>
+        </div>
         }
-      </div>
     </div>
-    }
-  </div>
   }
 </div>

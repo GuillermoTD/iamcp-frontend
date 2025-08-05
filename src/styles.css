@@ -8,3 +8,7 @@
   --color-tab-selected: oklch(0.6683 0.1293 237.53);
   --color-timeline-ball: oklch(0.6376 0.1952 35.49);
 }
+
+body {
+  @apply bg-black;
+}
