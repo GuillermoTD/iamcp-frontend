@@ -10,5 +10,5 @@
 }
 
 body {
-  @apply bg-black;
+  @apply bg-black overflow-x-hidden;
 }

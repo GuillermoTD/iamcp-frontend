@@ -8,18 +8,42 @@
   }
 
   .home-header-button {
-    @apply w-full sm:w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[16px] sm:text-[18px] font-medium;
+    @apply w-full sm:w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[16px] sm:text-[18px] font-medium cursor-pointer;
   }
 
   .home-banner {
-    @apply relative w-screen;
+    @apply relative w-full h-[45rem];
+
+    .home-banner-bg{
+      @apply w-full max-lg:h-[60vh];
+    }
+
+    .home-banner-content {
+      @apply absolute w-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10;
+    }
+
+    .home-banner-content-logo{
+      @apply flex flex-col items-center;
+
+      img{
+        @apply max-lg:w-[170px] h-[75px];
+      }
+    }
+
+    .home-banner-content-header{
+      @apply text-[60px] max-lg:text-[40px] max-lg:text-center font-bold;
+    }
+
+    .home-banner-subheader{
+      @apply text-[35px] max-lg:text-center;
+    }
   }
 
   .home-tabs {
     @apply flex flex-col;
 
     .home-tabs-labels {
-      @apply flex flex-col max-sm:justify-center items-center sm:flex-row px-[30px] py-[10px] gap-4 sm:gap-[0px] bg-[var(--color-tab-bar)];
+      @apply flex  max-sm:justify-center items-center sm:flex-row px-[30px] py-[15px] gap-4 sm:gap-[0px] bg-[var(--color-tab-bar)];
 
       .home-tabs-label-item {
         @apply flex items-center justify-center px-[12px] sm:px-[20px] py-[8px] sm:py-[10px] text-[18px] sm:text-base text-center transition duration-300 cursor-pointer;
