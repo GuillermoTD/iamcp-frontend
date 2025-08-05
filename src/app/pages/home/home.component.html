@@ -155,11 +155,11 @@
                 @case ("blocks.timeline") {
                   <div class="home-tabs-content-blocks-timeline">
                     @for (textBlock of block.textBlocks; track textBlock.id) {
-                      <div class="relative flex gap-x-[30px]">
+                      <div class="home-tabs-content-blocks-timeline-text ">
 
-                        <div class="w-5 h-5 bg-[#E95128] rounded-full mt-[30px]"></div>
+                        <div class="home-tabs-content-blocks-timeline-ball"></div>
                         @if (!$last) {
-                          <div class="absolute top-[30px] left-[9px] h-[calc(100%+60px)] w-[2px] bg-[#E95128]"></div>
+                          <div class="home-tabs-content-blocks-timeline-line"></div>
                         }
 
                         <div class="home-tabs-content-blocks-text">
