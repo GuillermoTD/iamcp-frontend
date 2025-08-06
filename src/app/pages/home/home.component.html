@@ -6,7 +6,7 @@
       class="w-[144px]"
       [src]="serverUrl + data.data.header.logo.url"
     />
- 
+
     @if (data.data.header.button.label) {
     <button id="header.button" class="home-header-button">
       {{ data.data.header.button.label }}
@@ -20,7 +20,7 @@
       class="home-banner-bg"
       [src]="serverUrl + data.data.banner.image.url"
     />
- 
+
     <div class="home-banner-content">
       <div class="home-banner-content-logo">
         @if (data?.data?.banner.logo) {
@@ -29,11 +29,11 @@
           [src]="serverUrl + data.data.banner.logo.url"
         />
         }
- 
+
         <div id="banner.header" class="home-banner-content-header">
           {{ data.data.banner.header }}
         </div>
- 
+
         @if (data.data.banner.subheader) {
         <div id="banner.subheader" class="home-banner-subheader">
           {{ data.data.banner.subheader }}
@@ -41,14 +41,23 @@
         }
       </div>
     </div>
+    -->
   </div>
   }
- 
-  <!-- <app-slider [slides]="data?.data?.slider?.slides"/> -->
- 
+
+<!-- <app-slider [slides]="data?.data?.slider?.slides"/> -->
+
   @if (data?.data?.tabs?.length) {
-  <div class="home-tabs">
-    <div class="home-tabs-labels">
+    <div class="home-tabs">
+      <div class="home-tabs-labels">
+        @for (tab of data.data.tabs; track tab.id) {
+          <button [ngClass]="activeTabId === tab.id ? 'home-tabs-label-item-active-tab' : 'home-tabs-label-item'" (click)="setActiveTab(tab?.id)">
+              {{ tab.title }}
+          </button>
+          }
+    </div>
+
+    <div class="home-tabs-content">
       @for (tab of data.data.tabs; track tab.id) {
       <div class="home-tabs-label-item" (click)="setActiveTab(tab?.id)">
         @if (this.activeTabId == tab.id) {
@@ -62,7 +71,7 @@
       </div>
       }
     </div>
- 
+
     <div class="home-tabs-content">
       @for (tab of data.data.tabs; track tab.id) { @if (this.activeTabId ==
       tab.id) { @if (tab.blocks?.length) {
@@ -77,13 +86,13 @@
             <div class="home-tabs-content-blocks-card-title">
               {{ block.title }}
             </div>
- 
+
             <div
               class="home-tabs-content-blocks-card-description"
               [innerHTML]="block.description | markdown"
             ></div>
           </div>
- 
+
           <img
             class="home-tabs-content-blocks-card-image"
             [src]="serverUrl + block.image.url"
@@ -92,7 +101,7 @@
         } @case ("blocks.image") {
         <div class="home-tabs-content-blocks-media">
           <img [src]="serverUrl + block.image.url" />
- 
+
           @if (block.hasDescription) {
           <div
             class="home-tabs-content-blocks-media-description"
@@ -108,7 +117,7 @@
           <div class="home-tabs-content-blocks-media">
             <div>
               <img [src]="serverUrl + image.image.url" />
- 
+
               @if (image.hasDescription) {
               <div
                 class="home-tabs-content-blocks-media-description"
@@ -130,7 +139,7 @@
           >
             <source [src]="serverUrl + block.video.url" />
           </video>
- 
+
           @if (block.hasDescription) {
           <div
             class="home-tabs-content-blocks-media-description"
@@ -148,7 +157,7 @@
           <div class="home-tabs-content-blocks-text-title">
             {{ block.title }}
           </div>
- 
+
           <div
             class="home-tabs-content-blocks-text-description"
             [innerHTML]="block?.description | markdown"
@@ -179,7 +188,7 @@
             @if (!$last) {
             <div class="home-tabs-content-blocks-timeline-line"></div>
             }
- 
+
             <div class="home-tabs-content-blocks-text">
               <div class="home-tabs-content-blocks-text-title">
                 {{ textBlock.title }}
@@ -200,7 +209,7 @@
   } @if (data?.data?.footer) {
   <div class="home-footer">
     <img class="w-[144px]" [src]="serverUrl + data.data.footer.logo.url" />
- 
+
     @if (data.data.footer.contactInfo.contacts.length) {
     <div class="home-footer-contact-info">
       @if (data.data.footer.contactInfo.title) {
@@ -208,7 +217,7 @@
         {{ data.data.footer.contactInfo.title }}
       </div>
       }
- 
+
       <div class="home-footer-contact-info-contacts">
         @for (contact of data.data.footer.contactInfo.contacts; track
         contact.id) {
@@ -220,7 +229,7 @@
               [src]="serverUrl + contact.icon.url"
             />
             }
- 
+
             <div class="home-footer-contact-info-contacts-contact-text">
               {{ contact.text }}
             </div>
