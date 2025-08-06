@@ -17,12 +17,9 @@
 
   @if (data?.data?.banner) {
   <div id="banner" class="home-banner">
-    <img
-      id="banner.image"
-      class="w-full"
-      [src]="serverUrl + data.data.banner.image.url"
-    />
+    <img class="w-full" [src]="serverUrl + data.data.banner.image.url"/>
 
+<!--
     <div
       class="absolute w-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[229px] z-10"
     >
@@ -46,27 +43,20 @@
         }
       </div>
     </div>
+    -->
   </div>
   }
 
-  <!-- <app-slider [slides]="data?.data?.slider?.slides"/> -->
+<!-- <app-slider [slides]="data?.data?.slider?.slides"/> -->
 
 
   @if (data?.data?.tabs?.length) {
     <div class="home-tabs">
       <div class="home-tabs-labels">
         @for (tab of data.data.tabs; track tab.id) {
-          <div class="home-tabs-label-item" (click)="setActiveTab(tab?.id)">
-            @if (this.activeTabId == tab.id) {
-              <div class="active-tab">
-                {{ tab.title }}
-                <div class="active-tab-border"></div>
-              </div>
-            }
-            @else {
+          <button [ngClass]="activeTabId === tab.id ? 'home-tabs-label-item-active-tab' : 'home-tabs-label-item'" (click)="setActiveTab(tab?.id)">
               {{ tab.title }}
-            }
-          </div>
+          </button>
           }
     </div>
 
