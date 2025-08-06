@@ -8,7 +8,7 @@
     />
 
     @if (data.data.header.button.label) {
-    <button id="header.button" class="home-header-button">
+    <button class="home-header-button">
       {{ data.data.header.button.label }}
     </button>
     }
@@ -24,10 +24,7 @@
     <div class="home-banner-content">
       <div class="home-banner-content-logo">
         @if (data?.data?.banner.logo) {
-        <img
-          id="banner.logo"
-          [src]="serverUrl + data.data.banner.logo.url"
-        />
+          <img [src]="serverUrl + data.data.banner.logo.url"/>
         }
 
         <div id="banner.header" class="home-banner-content-header">
@@ -169,18 +166,16 @@
           @for (textBlock of block.textBlocks; track textBlock.id) {
           <div class="home-tabs-content-blocks-timeline-text">
             <div class="home-tabs-content-blocks-timeline-ball"></div>
+
             @if (!$last) {
-            <div class="home-tabs-content-blocks-timeline-line"></div>
+              <div class="home-tabs-content-blocks-timeline-line"></div>
             }
 
-            <div class="home-tabs-content-blocks-text">
+            <div class="home-tabs-content-blocks-text" [ngClass]="block.isTextCentered ? 'text-center' : null">
               <div class="home-tabs-content-blocks-text-title">
                 {{ textBlock.title }}
               </div>
-              <div
-                class="home-tabs-content-blocks-text-description"
-                [innerHTML]="textBlock?.description | markdown"
-              ></div>
+                <div class="home-tabs-content-blocks-text-description" [innerHTML]="textBlock?.description | markdown"></div>
             </div>
           </div>
           }
