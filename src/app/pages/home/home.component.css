@@ -1,104 +1,163 @@
 @import "tailwindcss";
-
-.Home {
-  /* HEADER */
-  .Home_Header {
+ 
+.home {
+  @apply flex flex-col h-screen font-[Poppins] text-white;
+ 
+  .home-header {
     @apply flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 py-[15px] sm:py-[23px] px-[20px] sm:px-[74px] bg-black border-b border-[var(--color-header-border)];
   }
-
-  .Home_Header_Button {
-    @apply w-full sm:w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[16px] sm:text-[18px] font-medium;
+ 
+  .home-header-button {
+    @apply w-full sm:w-[195px] h-[40px] bg-[var(--color-button)] rounded-[25px] text-[16px] sm:text-[18px] font-medium cursor-pointer;
   }
-
-  /* BANNER */
-/* BANNER */
-.Home_Banner {
-  @apply flex flex-col items-center justify-center w-full h-[35rem] sm:h-[40rem] md:h-[45rem];
-
-  .Home_Banner__Wrapper {
-    @apply relative top-0 left-0 w-full h-[20rem];
-
-    img {
-      @apply absolute w-full h-full object-cover;
+ 
+  .home-banner {
+    @apply relative w-full h-[45rem];
+ 
+    .home-banner-bg{
+      @apply w-full max-lg:h-[60vh];
     }
-  }
-
-  .Home_Banner__Box {
-    @apply absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-           flex flex-col items-center text-center z-10 px-4 text-white;
-
-    img {
-      @apply w-[180px] sm:w-[229px] mb-4;
+ 
+    .home-banner-content {
+      @apply absolute w-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10;
     }
-
-    .Home_Banner__Content_Title {
-      @apply text-[38px] w-[180%] text-white  sm:text-[45px] sm:w-[30rem] md:text-[70px] md:w-[50rem]  font-bold leading-tight;
-    }
-
-    .Home_Banner__Content_Description {
-      @apply text-[16px] sm:text-[24px] md:text-[35px] mt-2;
-    }
-  }
-}
-
-
-
-  /* TABS */
-  .Home_Tabs {
-    @apply flex flex-col;
-
-    .Home_Tabs_Labels {
-      @apply flex flex-col max-md:justify-center items-center sm:flex-row p-[10px] gap-4 sm:gap-[60px] bg-[var(--color-tab-bar)];
-
-      .Home_Tabs_LabelItem {
-        @apply flex items-center justify-center px-[12px] sm:px-[20px] py-[8px] sm:py-[10px] text-sm sm:text-base transition duration-300 cursor-pointer;
+ 
+    .home-banner-content-logo{
+      @apply flex flex-col items-center;
+ 
+      img{
+        @apply max-lg:w-[170px] h-[75px];
       }
     }
-
-    .Home_Tabs_Content {
-      @apply flex flex-col items-center w-full min-h-[20rem] sm:min-h-[30rem] bg-black p-[20px] sm:p-[30px];
-
-      .Home_Tabs_Content_Blocks {
-        @apply flex flex-col gap-[40px] sm:gap-[120px] w-full sm:w-3/4 py-[30px] sm:py-[60px];
-
-        .Home_Tabs_Content_Blocks_Card {
-          @apply flex flex-col max-h-[30rem] md:flex-row  sm:gap-[20px] items-center justify-around;
-
-          .Home_Tabs_Content_Blocks_Card_Text {
-            @apply flex flex-col w-full  md:w-[50%];
-
-            .Home_Tabs_Content_Blocks_Card_Title {
-              @apply text-[15px] sm:text-[28px] md:text-[35px] text-center ;
+ 
+    .home-banner-content-header{
+      @apply text-[60px] max-lg:text-[40px] max-lg:text-center font-bold;
+    }
+ 
+    .home-banner-subheader{
+      @apply text-[35px] max-lg:text-center;
+    }
+  }
+ 
+  .home-tabs {
+    @apply flex flex-col;
+ 
+    .home-tabs-labels {
+      @apply flex  max-sm:justify-center items-center sm:flex-row px-[30px] py-[15px] gap-4 sm:gap-[0px] bg-[var(--color-tab-bar)];
+ 
+      .home-tabs-label-item {
+        @apply flex items-center justify-center px-[12px] sm:px-[20px] py-[8px] sm:py-[10px] text-[18px] sm:text-base text-center transition duration-300 cursor-pointer;
+      }
+    }
+ 
+    .home-tabs-content {
+      @apply flex flex-col items-center w-screen min-h-[30rem] sm:min-h-[40rem] bg-black px-[60px] py-[30px];
+ 
+      .home-tabs-content-blocks {
+        @apply flex flex-col items-center gap-[124px] px-[30px] mt-[60px] mb-[180px];
+ 
+        .home-tabs-content-blocks-card {
+          @apply flex max-md:flex-wrap max-xl:flex-col-reverse gap-[60px] items-center justify-center;
+ 
+          .home-tabs-content-blocks-card-text {
+            @apply flex flex-col xl:w-1/2 max-xl:text-center max-sm:text-left max-xl:items-center max-sm:items-start gap-[30px];
+ 
+            .home-tabs-content-blocks-card-title {
+              @apply text-[35px];
             }
-
-            .Home_Tabs_Content_Blocks_Card_Description {
-              @apply text-[12px] sm:text-[14px]  md:text-[15px] text-center;
+ 
+            .home-tabs-content-blocks-card-description {
+              @apply text-[20px] w-9/10;
             }
           }
-
-          .Home_Tabs_Content_Blocks_Card_Image {
-            @apply w-full md:w-[54%] object-cover rounded-lg;
+ 
+          .home-tabs-content-blocks-card-image {
+            @apply min-xl:w-1/2 max-xl:max-h-[400px];
+          }
+        }
+ 
+        .home-tabs-content-blocks-media {
+          @apply flex flex-col min-md:w-1/2 max-md:max-h-[400px] gap-[24px];
+ 
+          .home-tabs-content-blocks-media-description {
+            @apply text-[16px];
+          }
+        }
+ 
+        .home-tabs-content-blocks-two-image-columns {
+          @apply flex max-md:flex-col-reverse gap-[60px] items-center justify-center;
+        }
+ 
+        .home-tabs-content-blocks-text {
+          @apply flex flex-col w-full gap-[24px];
+ 
+          .home-tabs-content-blocks-text-title {
+            @apply text-[35px];
+          }
+ 
+          .home-tabs-content-blocks-text-description {
+            @apply flex flex-col gap-[24px] text-[20px];
+          }
+        }
+ 
+        .home-tabs-content-blocks-two-text-columns {
+          @apply flex max-md:flex-wrap justify-between w-full gap-[60px];
+        }
+ 
+        .home-tabs-content-blocks-timeline {
+          @apply flex flex-col gap-y-[60px];
+ 
+          .home-tabs-content-blocks-timeline-text {
+            @apply relative flex gap-x-[30px];
+ 
+            .home-tabs-content-blocks-timeline-ball {
+              @apply w-5 h-5 bg-[var(--color-timeline-ball)] rounded-full mt-[17px];
+            }
+ 
+            .home-tabs-content-blocks-timeline-line {
+              @apply absolute top-[17px] left-[9px] h-[calc(100%+60px)] w-[2px] bg-[#E95128];
+            }
           }
         }
       }
     }
   }
-
-  .Home_Footer {
-    @apply h-full flex flex-col justify-center items-center py-[30px] px-[74px]
-           bg-black md:flex-row md:items-start md:justify-between;
-
-    .Home_Footer__Box {
-      @apply flex flex-col gap-[10px];
+ 
+  .home-footer {
+    @apply h-full flex flex-row gap-[30px] max-sm:flex-col max-sm:items-center justify-between items-start py-[30px] px-[74px] bg-black font-[Inter];
+ 
+    .home-footer-contact-info {
+      @apply flex flex-col gap-[30px];
+ 
+      .home-footer-contact-info-title {
+        @apply text-[20px] text-right max-sm:text-center font-semibold;
+      }
+ 
+      .home-footer-contact-info-contacts {
+        @apply flex max-lg:flex-col gap-[30px];
+ 
+        .home-footer-contact-info-contacts-contact {
+          @apply flex gap-x-[9px] items-center;
+ 
+          .home-footer-contact-info-contacts-contact-icon {
+            @apply object-cover;
+          }
+ 
+          .home-footer-contact-info-contacts-contact-text {
+            @apply text-[15px] whitespace-nowrap;
+          }
+        }
+      }
+    }
+  }
+ 
+  .active-tab {
+    @apply relative text-[var(--color-tab-selected)];
+ 
+    .active-tab-border {
+      @apply absolute bottom-[-24px] left-0 w-full h-[0.3rem] bg-[var(--color-tab-selected)];
     }
   }
 }
-
-/* ACTIVE TAB */
-.active-tab {
-  @apply relative text-[var(--color-tab-selected)];
-
-  .active-tab_border {
-    @apply absolute bottom-[-10px] sm:bottom-[-20px]  w-full h-[0.2rem] sm:h-[0.3rem] bg-[var(--color-tab-selected)];
-  }
-}
+ 
+ 

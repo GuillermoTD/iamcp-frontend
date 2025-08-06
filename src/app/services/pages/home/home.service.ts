@@ -14,18 +14,23 @@ export class HomeService {
     'populate[3]=banner.image',
     'populate[4]=banner.logo',
     'populate[5]=tabs',
-    'populate[6]=tabs.blocks.components',
-    // card
-    'populate[7]=tabs.blocks.image',
-    'populate[8]=tabs.blocks.isReverse',
 
-    'populate[9]=footer',
-    'populate[10]=footer.logo',
-    'populate[11]=footer.contactInfo',
-    'populate[12]=footer.contactInfo.contacts',
-    'populate[13]=footer.contactInfo.contacts.icon',
-    'populate[14]=footer.contactInfo.contacts.icon',
-    'populate[15]=slider.slides',
+    'populate[6]=tabs.blocks',
+    'populate[7]=tabs.blocks.components',
+    'populate[8]=tabs.blocks.image',
+    'populate[9]=tabs.blocks.imageColumns',
+    'populate[10]=tabs.blocks.imageColumns.image',
+    'populate[11]=tabs.blocks.video',
+    'populate[12]=tabs.blocks.textColumns',
+    'populate[13]=tabs.blocks.textBlocks',
+
+    'populate[14]=footer',
+    'populate[15]=footer.logo',
+    'populate[16]=footer.contactInfo',
+    'populate[17]=footer.contactInfo.contacts',
+    'populate[18]=footer.contactInfo.contacts.icon',
+    'populate[19]=footer.contactInfo.contacts.icon',
+    'populate[20]=slider.slides',
   ];
 
   private url = `http://localhost:1337/api/home?${this.populates.join('&')}`;

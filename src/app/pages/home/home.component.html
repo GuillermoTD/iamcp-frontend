@@ -1,45 +1,61 @@
-<div class="flex flex-col h-screen font-[Poppins] text-white Home">
+<div class="home">
   @if (data?.data?.header) {
-  <div class="Home_Header">
+  <div class="home-header">
     <img
       id="header.logo"
       class="w-[144px]"
       [src]="serverUrl + data.data.header.logo.url"
     />
-
+ 
     @if (data.data.header.button.label) {
-    <button id="header.button" class="Home_Header_Button">
+    <button id="header.button" class="home-header-button">
       {{ data.data.header.button.label }}
     </button>
     }
   </div>
   } @if (data?.data?.banner) {
-  <div class="Home_Banner">
-    <div class="Home_Banner__Wrapper">
-      <img [src]="serverUrl + data.data.banner.image.url" alt="Banner" />
-    </div>
-
-    <div class="Home_Banner__Box">
-      <img [src]="serverUrl + data.data.banner.logo.url" alt="Logo" />
-      <h2 class="Home_Banner__Content_Title">{{ data.data.banner.header }}</h2>
-      <p class="Home_Banner__Content_Description">
-        {{ data.data.banner.description }}
-      </p>
+  <div id="banner" class="home-banner">
+    <img
+      id="banner.image"
+      class="home-banner-bg"
+      [src]="serverUrl + data.data.banner.image.url"
+    />
+ 
+    <div class="home-banner-content">
+      <div class="home-banner-content-logo">
+        @if (data?.data?.banner.logo) {
+        <img
+          id="banner.logo"
+          class="w-[229px]"
+          [src]="serverUrl + data.data.banner.logo.url"
+        />
+        }
+ 
+        <div id="banner.header" class="home-banner-content-header">
+          {{ data.data.banner.header }}
+        </div>
+ 
+        @if (data.data.banner.subheader) {
+        <div id="banner.subheader" class="home-banner-subheader">
+          {{ data.data.banner.subheader }}
+        </div>
+        }
+      </div>
     </div>
   </div>
   }
-
-  <!-- <app-slider [slides]="data?.data?.slider.slides"/> -->
-
+ 
+  <!-- <app-slider [slides]="data?.data?.slider?.slides"/> -->
+ 
   @if (data?.data?.tabs?.length) {
-  <div class="Home_Tabs">
-    <div class="Home_Tabs_Labels">
+  <div class="home-tabs">
+    <div class="home-tabs-labels">
       @for (tab of data.data.tabs; track tab.id) {
-      <div class="Home_Tabs_LabelItem" (click)="setActiveTab(tab?.id)">
+      <div class="home-tabs-label-item" (click)="setActiveTab(tab?.id)">
         @if (this.activeTabId == tab.id) {
         <div class="active-tab">
           {{ tab.title }}
-          <div class="active-tab_border"></div>
+          <div class="active-tab-border"></div>
         </div>
         } @else {
         {{ tab.title }}
@@ -47,30 +63,135 @@
       </div>
       }
     </div>
-
-    <div class="Home_Tabs_Content">
+ 
+    <div class="home-tabs-content">
       @for (tab of data.data.tabs; track tab.id) { @if (this.activeTabId ==
       tab.id) { @if (tab.blocks?.length) {
-      <div class="Home_Tabs_Content_Blocks">
-        @for (block of tab.blocks; track block.id) { @switch (block.__component)
-        { @case ("blocks.card") {
+      <div class="home-tabs-content-blocks">
+        @for (block of tab.blocks; track $index) { @switch (block.__component) {
+        @case ("blocks.card") {
         <div
-          class="Home_Tabs_Content_Blocks_Card"
+          class="home-tabs-content-blocks-card"
           [ngClass]="block.isReverse ? 'flex-row-reverse' : 'flex-row'"
         >
-          <div class="Home_Tabs_Content_Blocks_Card_Text">
-            <div class="Home_Tabs_Content_Blocks_Card_Title">
+          <div class="home-tabs-content-blocks-card-text">
+            <div class="home-tabs-content-blocks-card-title">
               {{ block.title }}
             </div>
-            <div class="Home_Tabs_Content_Blocks_Card_Description">
-              {{ block.description }}
-            </div>
+ 
+            <div
+              class="home-tabs-content-blocks-card-description"
+              [innerHTML]="block.description | markdown"
+            ></div>
           </div>
-
+ 
           <img
-            class="Home_Tabs_Content_Blocks_Card_Image"
+            class="home-tabs-content-blocks-card-image"
             [src]="serverUrl + block.image.url"
           />
+        </div>
+        } @case ("blocks.image") {
+        <div class="home-tabs-content-blocks-media">
+          <img [src]="serverUrl + block.image.url" />
+ 
+          @if (block.hasDescription) {
+          <div
+            class="home-tabs-content-blocks-media-description"
+            [ngClass]="block.isDescriptionCentered ? 'text-center' : null"
+          >
+            {{ block.description }}
+          </div>
+          }
+        </div>
+        } @case ("blocks.two-image-columns") {
+        <div class="home-tabs-content-blocks-two-image-columns">
+          @for (image of block.imageColumns; track image.id) {
+          <div class="home-tabs-content-blocks-media">
+            <div>
+              <img [src]="serverUrl + image.image.url" />
+ 
+              @if (image.hasDescription) {
+              <div
+                class="home-tabs-content-blocks-media-description"
+                [ngClass]="image.isDescriptionCentered ? 'text-center' : ''"
+              >
+                {{ image.description }}
+              </div>
+              }
+            </div>
+          </div>
+          }
+        </div>
+        } @case ("blocks.video") {
+        <div class="home-tabs-content-blocks-media">
+          <video
+            [autoplay]="block.autoplay ? 'autoplay' : null"
+            [muted]="block.isMuted ? 'muted' : null"
+            [controls]="block.hasControls ? 'controls' : null"
+          >
+            <source [src]="serverUrl + block.video.url" />
+          </video>
+ 
+          @if (block.hasDescription) {
+          <div
+            class="home-tabs-content-blocks-media-description"
+            [ngClass]="block.isDescriptionCentered ? 'text-center' : null"
+          >
+            {{ block.description }}
+          </div>
+          }
+        </div>
+        } @case ("blocks.text") {
+        <div
+          class="home-tabs-content-blocks-text"
+          [ngClass]="block.isTextCentered ? 'text-center' : null"
+        >
+          <div class="home-tabs-content-blocks-text-title">
+            {{ block.title }}
+          </div>
+ 
+          <div
+            class="home-tabs-content-blocks-text-description"
+            [innerHTML]="block?.description | markdown"
+          ></div>
+        </div>
+        } @case ("blocks.two-text-columns") {
+        <div class="home-tabs-content-blocks-two-text-columns">
+          @for (textBlock of block.textColumns; track textBlock.id) {
+          <div
+            class="home-tabs-content-blocks-text"
+            [ngClass]="block.isTextCentered ? 'text-center' : null"
+          >
+            <div class="home-tabs-content-blocks-text-title">
+              {{ textBlock.title }}
+            </div>
+            <div
+              class="home-tabs-content-blocks-text-description"
+              [innerHTML]="textBlock?.description | markdown"
+            ></div>
+          </div>
+          }
+        </div>
+        } @case ("blocks.timeline") {
+        <div class="home-tabs-content-blocks-timeline">
+          @for (textBlock of block.textBlocks; track textBlock.id) {
+          <div class="home-tabs-content-blocks-timeline-text">
+            <div class="home-tabs-content-blocks-timeline-ball"></div>
+            @if (!$last) {
+            <div class="home-tabs-content-blocks-timeline-line"></div>
+            }
+ 
+            <div class="home-tabs-content-blocks-text">
+              <div class="home-tabs-content-blocks-text-title">
+                {{ textBlock.title }}
+              </div>
+              <div
+                class="home-tabs-content-blocks-text-description"
+                [innerHTML]="textBlock?.description | markdown"
+              ></div>
+            </div>
+          </div>
+          }
         </div>
         } } }
       </div>
@@ -78,39 +199,30 @@
     </div>
   </div>
   } @if (data?.data?.footer) {
-  <div id="footer" class="Home_Footer">
-    <img
-      id="footer.logo"
-      class="w-[144px]"
-      [src]="serverUrl + data.data.footer.logo.url"
-    />
-
+  <div class="home-footer">
+    <img class="w-[144px]" [src]="serverUrl + data.data.footer.logo.url" />
+ 
     @if (data.data.footer.contactInfo.contacts.length) {
-    <div class="Home_Footer__Box flex flex-col gap-[10px]">
+    <div class="home-footer-contact-info">
       @if (data.data.footer.contactInfo.title) {
-      <div
-        id="footer.contactInfo.title"
-        class="text-[20px] text-right font-semibold"
-      >
+      <div class="home-footer-contact-info-title">
         {{ data.data.footer.contactInfo.title }}
       </div>
       }
-      <div class="flex flex-row gap-[30px]">
+ 
+      <div class="home-footer-contact-info-contacts">
         @for (contact of data.data.footer.contactInfo.contacts; track
         contact.id) {
         <a [href]="contact.href" target="blank">
-          <div class="flex flex-row gap-x-[9px]">
+          <div class="home-footer-contact-info-contacts-contact">
             @if (contact.icon) {
             <img
-              id="footer.contactInfo.contact.icon"
+              class="home-footer-contact-info-contacts-contact-icon"
               [src]="serverUrl + contact.icon.url"
             />
             }
-
-            <div
-              id="footer.contactInfo.contact.text"
-              class="text-[15px] whitespace-nowrap"
-            >
+ 
+            <div class="home-footer-contact-info-contacts-contact-text">
               {{ contact.text }}
             </div>
           </div>
