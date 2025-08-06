@@ -41,7 +41,6 @@
         }
       </div>
     </div>
-    -->
   </div>
   }
 
@@ -55,21 +54,6 @@
               {{ tab.title }}
           </button>
           }
-    </div>
-
-    <div class="home-tabs-content">
-      @for (tab of data.data.tabs; track tab.id) {
-      <div class="home-tabs-label-item" (click)="setActiveTab(tab?.id)">
-        @if (this.activeTabId == tab.id) {
-        <div class="active-tab">
-          {{ tab.title }}
-          <div class="active-tab-border"></div>
-        </div>
-        } @else {
-        {{ tab.title }}
-        }
-      </div>
-      }
     </div>
 
     <div class="home-tabs-content">
