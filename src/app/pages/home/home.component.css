@@ -46,12 +46,12 @@
       @apply relative top-[-40px] sm:top-[-54px] z-10 flex flex-row max-sm:justify-center text-center items-center px-[60px] sm:gap-[30px] gap-[15px] border-b-[2px] border-[var(--color-tab-selected)];
 
       .home-tabs-label-item {
-        @apply px-[18px] sm:px-[20px] py-[10px] sm:py-[13px] text-[12px] sm:text-[18px] text-center transition duration-300 cursor-pointer rounded-t-xl bg-[var(--color-tab-bg)] text-[var(--color-tab-selected)] hover:opacity-90;
+        @apply px-[18px] sm:px-[20px] py-[10px] sm:py-[13px] text-[10px] sm:text-[18px] text-center transition duration-300 cursor-pointer rounded-t-xl bg-[var(--color-tab-bg)] text-[var(--color-tab-selected)] hover:opacity-90;
       }
 
       .home-tabs-label-item-active-tab {
-        @apply px-[18px] sm:px-[20px] py-[8px] sm:py-[10px] font-semibold text-[16px] sm:text-[22px] text-center transition duration-300 cursor-pointer rounded-t-xl bg-[var(--color-tab-selected-bg)] text-[var(--color-tab-selected)] border-[2px] border-b-[0px] border-[var(--color-tab-selected)];
-        margin-bottom: -2px;
+        @apply px-[18px] sm:px-[20px] py-[8px] sm:py-[10px] font-semibold text-[12px] sm:text-[22px] text-center transition duration-300 cursor-pointer rounded-t-xl bg-[var(--color-tab-selected-bg)] text-[var(--color-tab-selected)] border-[2px] border-b-[0px] border-[var(--color-tab-selected)];
+        margin-bottom: -3px;
       }
     }
 
@@ -130,6 +130,14 @@
 
   .home-footer {
     @apply h-full flex flex-row gap-[30px] max-sm:flex-col max-sm:items-center justify-between items-start py-[30px] px-[74px] bg-black font-[Inter];
+
+    .home-footer-left {
+      @apply flex gap-[30px] max-sm:flex-col max-sm:items-center items-center;
+
+      .home-footer-termsOfService {
+        @apply text-[20px] text-left max-sm:text-center font-semibold;
+      }
+    }
 
     .home-footer-contact-info {
       @apply flex flex-col gap-[30px];

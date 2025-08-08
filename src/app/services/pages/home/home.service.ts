@@ -30,7 +30,9 @@ export class HomeService {
     'populate[17]=footer.contactInfo.contacts',
     'populate[18]=footer.contactInfo.contacts.icon',
     'populate[19]=footer.contactInfo.contacts.icon',
-    'populate[20]=slider.slides',
+    'populate[20]=footer.termsOfService',
+    'populate[21]=footer.termsOfService.pdf',
+    'populate[22]=slider.slides',
   ];
 
   private url = `http://localhost:1337/api/home?${this.populates.join('&')}`;

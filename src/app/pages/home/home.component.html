@@ -187,7 +187,17 @@
   </div>
   } @if (data?.data?.footer) {
   <div class="home-footer">
-    <img class="w-[144px]" [src]="serverUrl + data.data.footer.logo.url" />
+    <div class="home-footer-left">
+        <img class="w-[144px]" [src]="serverUrl + data.data.footer.logo.url" />
+
+        @if (data.data.footer.termsOfService) {
+          <div class="home-footer-termsOfService">
+            <a [href]="serverUrl + data.data.footer.termsOfService.pdf.url" target="blank">
+              {{ data.data.footer.termsOfService.label }}
+            </a>
+          </div>
+        }
+    </div>
 
     @if (data.data.footer.contactInfo.contacts.length) {
     <div class="home-footer-contact-info">
