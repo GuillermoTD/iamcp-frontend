@@ -8,7 +8,7 @@
     />
 
     @if (data.data.header.button.label) {
-    <button id="header.button" class="home-header-button">
+    <button class="home-header-button">
       {{ data.data.header.button.label }}
     </button>
     }
@@ -24,11 +24,7 @@
     <div class="home-banner-content">
       <div class="home-banner-content-logo">
         @if (data?.data?.banner.logo) {
-        <img
-          id="banner.logo"
-          class="w-[229px]"
-          [src]="serverUrl + data.data.banner.logo.url"
-        />
+          <img [src]="serverUrl + data.data.banner.logo.url"/>
         }
 
         <div id="banner.header" class="home-banner-content-header">
@@ -45,23 +41,16 @@
   </div>
   }
 
-  <!-- <app-slider [slides]="data?.data?.slider?.slides"/> -->
+<!-- <app-slider [slides]="data?.data?.slider?.slides"/> -->
 
   @if (data?.data?.tabs?.length) {
-  <div class="home-tabs">
-    <div class="home-tabs-labels">
-      @for (tab of data.data.tabs; track tab.id) {
-      <div class="home-tabs-label-item" (click)="setActiveTab(tab?.id)">
-        @if (this.activeTabId == tab.id) {
-        <div class="active-tab">
-          {{ tab.title }}
-          <div class="active-tab-border"></div>
-        </div>
-        } @else {
-        {{ tab.title }}
-        }
-      </div>
-      }
+    <div class="home-tabs">
+      <div class="home-tabs-labels">
+        @for (tab of data.data.tabs; track tab.id) {
+          <button [ngClass]="activeTabId === tab.id ? 'home-tabs-label-item-active-tab' : 'home-tabs-label-item'" (click)="setActiveTab(tab?.id)">
+              {{ tab.title }}
+          </button>
+          }
     </div>
 
     <div class="home-tabs-content">
@@ -177,18 +166,16 @@
           @for (textBlock of block.textBlocks; track textBlock.id) {
           <div class="home-tabs-content-blocks-timeline-text">
             <div class="home-tabs-content-blocks-timeline-ball"></div>
+
             @if (!$last) {
-            <div class="home-tabs-content-blocks-timeline-line"></div>
+              <div class="home-tabs-content-blocks-timeline-line"></div>
             }
 
-            <div class="home-tabs-content-blocks-text">
+            <div class="home-tabs-content-blocks-text" [ngClass]="block.isTextCentered ? 'text-center' : null">
               <div class="home-tabs-content-blocks-text-title">
                 {{ textBlock.title }}
               </div>
-              <div
-                class="home-tabs-content-blocks-text-description"
-                [innerHTML]="textBlock?.description | markdown"
-              ></div>
+                <div class="home-tabs-content-blocks-text-description" [innerHTML]="textBlock?.description | markdown"></div>
             </div>
           </div>
           }
@@ -200,7 +187,17 @@
   </div>
   } @if (data?.data?.footer) {
   <div class="home-footer">
-    <img class="w-[144px]" [src]="serverUrl + data.data.footer.logo.url" />
+    <div class="home-footer-left">
+        <img class="w-[144px]" [src]="serverUrl + data.data.footer.logo.url" />
+
+        @if (data.data.footer.termsOfService) {
+          <div class="home-footer-termsOfService">
+            <a [href]="serverUrl + data.data.footer.termsOfService.pdf.url" target="blank">
+              {{ data.data.footer.termsOfService.label }}
+            </a>
+          </div>
+        }
+    </div>
 
     @if (data.data.footer.contactInfo.contacts.length) {
     <div class="home-footer-contact-info">

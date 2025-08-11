@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .home {
-  @apply flex flex-col h-screen font-[Poppins] text-white;
+  @apply flex flex-col overflow-x-auto h-screen font-[Poppins] text-white;
 
   .home-header {
     @apply flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 py-[15px] sm:py-[23px] px-[20px] sm:px-[74px] bg-black border-b border-[var(--color-header-border)];
@@ -12,9 +12,9 @@
   }
 
   .home-banner {
-    @apply relative w-full h-[45rem];
+    @apply relative w-full;
 
-    .home-banner-bg{
+    .home-banner-bg {
       @apply w-full max-lg:h-[60vh];
     }
 
@@ -22,19 +22,19 @@
       @apply absolute w-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10;
     }
 
-    .home-banner-content-logo{
+    .home-banner-content-logo {
       @apply flex flex-col items-center;
 
-      img{
-        @apply max-lg:w-[170px] h-[75px];
+      img {
+        @apply max-lg:w-[140px] h-[55px];
       }
     }
 
-    .home-banner-content-header{
+    .home-banner-content-header {
       @apply text-[60px] max-lg:text-[40px] max-lg:text-center font-bold;
     }
 
-    .home-banner-subheader{
+    .home-banner-subheader {
       @apply text-[35px] max-lg:text-center;
     }
   }
@@ -43,31 +43,36 @@
     @apply flex flex-col;
 
     .home-tabs-labels {
-      @apply flex  max-sm:justify-center items-center sm:flex-row px-[30px] py-[15px] gap-4 sm:gap-[0px] bg-[var(--color-tab-bar)];
+      @apply relative top-[-40px] sm:top-[-54px] z-10 flex flex-row max-sm:justify-center text-center items-center px-[60px] sm:gap-[30px] gap-[15px] border-b-[2px] border-[var(--color-tab-selected)];
 
       .home-tabs-label-item {
-        @apply flex items-center justify-center px-[12px] sm:px-[20px] py-[8px] sm:py-[10px] text-[18px] sm:text-base text-center transition duration-300 cursor-pointer;
+        @apply px-[18px] sm:px-[20px] py-[10px] sm:py-[13px] text-[10px] sm:text-[18px] text-center transition duration-300 cursor-pointer rounded-t-xl bg-[var(--color-tab-bg)] text-[var(--color-tab-selected)] hover:opacity-90;
+      }
+
+      .home-tabs-label-item-active-tab {
+        @apply px-[18px] sm:px-[20px] py-[8px] sm:py-[10px] font-semibold text-[12px] sm:text-[22px] text-center transition duration-300 cursor-pointer rounded-t-xl bg-[var(--color-tab-selected-bg)] text-[var(--color-tab-selected)] border-[2px] border-b-[0px] border-[var(--color-tab-selected)];
+        margin-bottom: -3px;
       }
     }
 
     .home-tabs-content {
-      @apply flex flex-col items-center w-screen min-h-[30rem] sm:min-h-[40rem] bg-black px-[60px] py-[30px];
+      @apply flex flex-col items-center w-screen min-h-[30rem] sm:min-h-[40rem] bg-black px-[60px] sm:px-[120px] pt-[30px] sm:pt-[60px] pb-[120px] sm:pb-[180px];
 
       .home-tabs-content-blocks {
-        @apply flex flex-col items-center gap-[124px] px-[30px] mt-[60px] mb-[180px];
+        @apply flex flex-col items-center gap-[124px];
 
         .home-tabs-content-blocks-card {
           @apply flex max-md:flex-wrap max-xl:flex-col-reverse gap-[60px] items-center justify-center;
 
           .home-tabs-content-blocks-card-text {
-            @apply flex flex-col xl:w-1/2 max-xl:text-center max-sm:text-left max-xl:items-center max-sm:items-start gap-[30px];
+            @apply items-start flex flex-col xl:w-1/2 max-xl:text-center max-sm:text-left max-xl:items-center max-sm:items-start gap-[30px];
 
             .home-tabs-content-blocks-card-title {
-              @apply text-[35px];
+              @apply text-[30px] sm:text-[35px] max-sm:text-center;
             }
 
             .home-tabs-content-blocks-card-description {
-              @apply text-[20px] w-9/10;
+              @apply w-full text-[18px] sm:text-[24px] max-lg:w-full text-justify max-lg:hyphens-auto max-lg:break-words;
             }
           }
 
@@ -92,11 +97,11 @@
           @apply flex flex-col w-full gap-[24px];
 
           .home-tabs-content-blocks-text-title {
-            @apply text-[35px];
+            @apply text-[25px] sm:text-[40px];
           }
 
           .home-tabs-content-blocks-text-description {
-            @apply flex flex-col gap-[24px] text-[20px];
+            @apply flex flex-col gap-[24px] text-[15px] sm:text-[24px] text-justify max-lg:hyphens-auto max-lg:break-words;
           }
         }
 
@@ -108,14 +113,14 @@
           @apply flex flex-col gap-y-[60px];
 
           .home-tabs-content-blocks-timeline-text {
-            @apply relative flex gap-x-[30px];
+            @apply relative flex gap-x-[30px] items-start;
 
             .home-tabs-content-blocks-timeline-ball {
-              @apply w-5 h-5 bg-[var(--color-timeline-ball)] rounded-full mt-[17px];
+              @apply w-[14px] sm:w-[24px] aspect-square bg-[var(--color-timeline-ball)] rounded-full mt-[12.5px] sm:mt-[20px];
             }
 
             .home-tabs-content-blocks-timeline-line {
-              @apply absolute top-[17px] left-[9px] h-[calc(100%+60px)] w-[2px] bg-[#E95128];
+              @apply absolute top-[12.5px] sm:top-[20px] left-[5.5px] sm:left-[10px] h-[calc(100%+60px)] w-[2px] bg-[var(--color-timeline-ball)];
             }
           }
         }
@@ -125,6 +130,14 @@
 
   .home-footer {
     @apply h-full flex flex-row gap-[30px] max-sm:flex-col max-sm:items-center justify-between items-start py-[30px] px-[74px] bg-black font-[Inter];
+
+    .home-footer-left {
+      @apply flex gap-[30px] max-sm:flex-col max-sm:items-center items-center;
+
+      .home-footer-termsOfService {
+        @apply text-[20px] text-left max-sm:text-center font-semibold;
+      }
+    }
 
     .home-footer-contact-info {
       @apply flex flex-col gap-[30px];
@@ -148,14 +161,6 @@
           }
         }
       }
-    }
-  }
-
-  .active-tab {
-    @apply relative text-[var(--color-tab-selected)];
-
-    .active-tab-border {
-      @apply absolute bottom-[-24px] left-0 w-full h-[0.3rem] bg-[var(--color-tab-selected)];
     }
   }
 }
