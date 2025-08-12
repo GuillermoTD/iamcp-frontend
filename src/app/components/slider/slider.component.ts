@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, makeEnvironmentProviders } from '@angular/core';
 // core version + navigation, pagination modules:
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { CommonModule } from '@angular/common';
-
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-slider',
@@ -17,13 +17,13 @@ import { CommonModule } from '@angular/common';
 })
 export class SliderComponent {
   swiper: Swiper | undefined;
+  baseUrl = environment.apiUrl;
   @Input() slides: any[] = [];
-  domain: string = 'http://localhost:1337';
 
   ngOnInit(): void {
     // init Swiper:
     this.swiper = new Swiper('.swiper', {
-      modules: [ Pagination],
+      modules: [Pagination],
       navigation: false,
       pagination: { clickable: true },
       autoplay: {

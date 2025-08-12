@@ -3,20 +3,22 @@ import { HomeService } from '../../services/pages/home/home.service';
 import { CommonModule } from '@angular/common';
 import { SliderComponent } from '../../components/slider/slider.component';
 import { MarkdownPipe } from '../../markdown.pipe';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, SliderComponent, MarkdownPipe],
+  imports: [CommonModule, MarkdownPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
   private service = inject(HomeService);
   private cdr = inject(ChangeDetectorRef);
+  baseUrl = environment.baseUrl;
+  apiUrl = environment.apiUrl;
+
   data?: any;
   activeTabId?: string | null = null;
-
-  serverUrl = 'http://localhost:1337';
 
   ngOnInit(): void {
     this.service.fetch().subscribe({
@@ -33,7 +35,7 @@ export class HomeComponent implements OnInit {
 
   get bannerImage(): string {
     const url = this.data?.data?.banner?.image?.url;
-    return url ? `url(http://localhost:1337${url})` : '';
+    return url ? `url(${this.apiUrl}${url})` : '';
   }
 
   setActiveTab(tabId: string) {

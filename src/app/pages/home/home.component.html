@@ -4,7 +4,7 @@
     <img
       id="header.logo"
       class="w-[144px]"
-      [src]="serverUrl + data.data.header.logo.url"
+      [src]="baseUrl + data.data.header.logo.url"
     />
 
     @if (data.data.header.button.label) {
@@ -18,13 +18,13 @@
     <img
       id="banner.image"
       class="home-banner-bg"
-      [src]="serverUrl + data.data.banner.image.url"
+      [src]="baseUrl + data.data.banner.image.url"
     />
 
     <div class="home-banner-content">
       <div class="home-banner-content-logo">
         @if (data?.data?.banner.logo) {
-          <img [src]="serverUrl + data.data.banner.logo.url"/>
+          <img [src]="baseUrl + data.data.banner.logo.url"/>
         }
 
         <div id="banner.header" class="home-banner-content-header">
@@ -76,12 +76,12 @@
 
           <img
             class="home-tabs-content-blocks-card-image"
-            [src]="serverUrl + block.image.url"
+            [src]="baseUrl + block.image.url"
           />
         </div>
         } @case ("blocks.image") {
         <div class="home-tabs-content-blocks-media">
-          <img [src]="serverUrl + block.image.url" />
+          <img [src]="baseUrl + block.image.url" />
 
           @if (block.hasDescription) {
           <div
@@ -97,7 +97,7 @@
           @for (image of block.imageColumns; track image.id) {
           <div class="home-tabs-content-blocks-media">
             <div>
-              <img [src]="serverUrl + image.image.url" />
+              <img [src]="baseUrl + image.image.url" />
 
               @if (image.hasDescription) {
               <div
@@ -118,7 +118,7 @@
             [muted]="block.isMuted ? 'muted' : null"
             [controls]="block.hasControls ? 'controls' : null"
           >
-            <source [src]="serverUrl + block.video.url" />
+            <source [src]="baseUrl + block.video.url" />
           </video>
 
           @if (block.hasDescription) {
@@ -188,11 +188,11 @@
   } @if (data?.data?.footer) {
   <div class="home-footer">
     <div class="home-footer-left">
-        <img class="w-[144px]" [src]="serverUrl + data.data.footer.logo.url" />
+        <img class="w-[144px]" [src]="baseUrl + data.data.footer.logo.url" />
 
         @if (data.data.footer.termsOfService) {
           <div class="home-footer-termsOfService">
-            <a [href]="serverUrl + data.data.footer.termsOfService.pdf.url" target="blank">
+            <a [href]="apiUrl + data.data.footer.termsOfService.pdf.url" target="blank">
               {{ data.data.footer.termsOfService.label }}
             </a>
           </div>
@@ -215,7 +215,7 @@
             @if (contact.icon) {
             <img
               class="home-footer-contact-info-contacts-contact-icon"
-              [src]="serverUrl + contact.icon.url"
+              [src]="baseUrl + contact.icon.url"
             />
             }
 

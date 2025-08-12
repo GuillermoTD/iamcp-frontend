@@ -4,7 +4,7 @@
     <div class="swiper-wrapper bg-black" >
       <!-- Slides -->
       <div class="swiper-slide" *ngFor="let slide of slides" data-swiper-autoplay="2000">
-        <img [src]="domain + slide?.url" class="object-cover w-full h-full"  alt="slide" />
+        <img [src]="baseUrl + slide?.url" class="object-cover w-full h-full"  alt="slide" />
       </div>
     </div>
   </div>

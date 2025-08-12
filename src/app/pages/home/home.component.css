@@ -31,11 +31,11 @@
     }
 
     .home-banner-content-header {
-      @apply text-[60px] max-lg:text-[40px] max-lg:text-center font-bold;
+      @apply text-[60px] max-lg:text-[30px] max-lg:text-center font-bold;
     }
 
     .home-banner-subheader {
-      @apply text-[35px] max-lg:text-center;
+      @apply text-[35px] max-lg:text-[25px] max-lg:text-center;
     }
   }
 

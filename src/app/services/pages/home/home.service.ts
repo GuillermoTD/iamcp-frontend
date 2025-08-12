@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,7 @@ export class HomeService {
     'populate[22]=slider.slides',
   ];
 
-  private url = `http://localhost:1337/api/home?${this.populates.join('&')}`;
+  private url = `${environment.apiUrl}/home?${this.populates.join('&')}`;
 
   fetch(): Observable<any> {
     return this.http.get<any>(this.url);
